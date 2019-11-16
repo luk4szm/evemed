@@ -7,7 +7,6 @@ if (!isset($_SESSION['loggedUser'])) {
 	header('Location: /login.php');
 	exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -31,10 +30,8 @@ if (!isset($_SESSION['loggedUser'])) {
 </div>
 
 <?php
-
 include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
-
 ?>
 
 </body>
