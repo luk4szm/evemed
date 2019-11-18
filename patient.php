@@ -15,6 +15,9 @@ if (!empty($get_key)) {
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/formService/edit.php';
 	if ($get_key[0] == 'edit' && isset($_POST['formStep']) && $_POST['formStep'] == 'editPatientData') PatientEdit();
 
+	//service - note whole list
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/service-list.php';
+
 }
 
 if (!empty($get_key)) {
@@ -104,34 +107,34 @@ if (!empty($get_key)) {
                               <a href="/patient.php?notes=<?= $pat['ID'] ?>" class="menu">Notatki</a>
                            </td>
                            <td class="text-right">
-                              <span class="badge badge-light badge-menu">0</span>
+                              <span class="badge badge-light badge-menu"><?= $pat['notes_count'] ?></span>
                            </td>
                         </tr>
-                        <?php if ($pat['change_history_count']) { ?>
-                        <tr>
-                           <td>
-                              <a href="/patient.php?change_history=<?= $pat['ID'] ?>" class="menu">Historia zmian</a>
-                           </td>
-                           <td class="text-right">
-                              <span class="badge badge-light badge-menu"><?= $pat['change_history_count'] ?></span>
-                           </td>
-                        </tr>
-                        <?php } ?>
+								<?php if ($pat['change_history_count']) { ?>
+                           <tr>
+                              <td>
+                                 <a href="/patient.php?change_history=<?= $pat['ID'] ?>" class="menu">Historia zmian</a>
+                              </td>
+                              <td class="text-right">
+                                 <span class="badge badge-light badge-menu"><?= $pat['change_history_count'] ?></span>
+                              </td>
+                           </tr>
+								<?php } ?>
                      </table>
 
                      <hr>
 
                      <a href="/patient.php?edit=<?= $pat['ID'] ?>" class="menu">Edycja danych</a><br>
-                     <a href="/patients.php" class="menu">Wróc do listy</a><br>
+                     <a href="<?= $_SESSION['prev_url']; ?>" class="menu">Wróc do poprz. karty</a>
 
                   </div>
                </div>
 
-               <?php
-                  echo '<pre>';
-                  print_r($pat);
-                  echo '</pre>';
-               ?>
+					<?php
+					echo '<pre>';
+					print_r($pat);
+					echo '</pre>';
+					?>
 
             </div>
 

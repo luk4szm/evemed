@@ -45,3 +45,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/script/form/clean_button.php';
 //alerts & notification
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/alert/alerts.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/notif/notifyMaker.php';
+
+if (isset($_SERVER['HTTP_REFERER'])) {
+	if (!strstr($_SERVER['HTTP_REFERER'], basename($_SERVER['PHP_SELF']))) {
+		$_SESSION['prev_url'] = $_SERVER['HTTP_REFERER'];
+	}
+}

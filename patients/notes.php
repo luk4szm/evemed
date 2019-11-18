@@ -1,5 +1,5 @@
 <?php
-global $vis; #just for turn off notification
+global $pat; #just for turn off notification
 $k = 0;
 ?>
 
@@ -7,16 +7,15 @@ $k = 0;
       <div class="card-header">
 			<?= Breadcrump(
 				array(
-					'Wizyty',
-					$vis['patient']['full_name'],
-					DateConvert($vis['visit_date'], true),
+					'Pacjenci',
+					$pat['full_name'],
 					'Notatki',
 				)
 			) ?>
       </div>
       <div class="card-body">
 			<?php
-			if ($vis['notes_count'] > 0) {
+			if ($pat['notes_count'] > 0) {
 				?>
             <table class="table table-condensed">
 
@@ -28,8 +27,8 @@ $k = 0;
                </tr>
 
 					<?php
-					for ($i = 0; $i < $vis['notes_count']; $i++) {
-						$note = $vis['notes'][$i];
+					for ($i = 0; $i < $pat['notes_count']; $i++) {
+						$note = $pat['notes'][$i];
 						?>
                   <tr class="table-sm">
                      <td>
@@ -58,7 +57,7 @@ $k = 0;
 								}
 								?>
                      </td>
-                  </tr>i
+                  </tr>
 					<?php } ?>
 
             </table>
@@ -78,12 +77,12 @@ $k = 0;
 
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-add.php';
-Modal_AddNoteToItem('visID', $vis['ID']);
+Modal_AddNoteToItem('patID', $pat['ID']);
 
-if ($vis['notes_count']) {
+if ($pat['notes_count']) {
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-edit.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-del.php';
-	foreach ($vis['notes'] AS $note) {
+	foreach ($pat['notes'] AS $note) {
 		Modal_EditItemNote($note);
 		Modal_DeleteItemNote($note);
 	}

@@ -87,10 +87,31 @@ global $pat; #just for turn off notification
             <div class="card-body">
 
 					<?php
-					if (isset($pat['notes'])) {
+					if ($pat['notes_count'] > 0) {
 						?>
+                  <table class="table table-condensed">
 
+                     <tr>
+                        <th width="5%">#</th>
+                        <th class="text-center">Treść notatki</th>
+                     </tr>
 
+							<?php
+                     $k = 0;
+							for ($i = 0; $i < $pat['notes_count']; $i++) {
+								$note = $pat['notes'][$i];
+								?>
+                        <tr class="table-sm">
+                           <td>
+                              <?= ++$k ?>
+                           </td>
+                           <td class="text-center">
+										<?= nl2br($note['txt']) ?>
+                           </td>
+                        </tr>
+							<?php } ?>
+
+                  </table>
 						<?php
 					} else {
 						ShowSimpleInfo('Brak notatek');
@@ -113,3 +134,6 @@ global $pat; #just for turn off notification
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/modals/visit-new.php';
 Modal_VisitNew($pat);
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-add.php';
+Modal_AddNoteToItem('patID', $pat['ID']);

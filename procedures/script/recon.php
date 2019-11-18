@@ -73,6 +73,17 @@ function ProcedureRecon($ID)
 		$proc['result']['visit_future_occurr_sum_price'] = 0;
 	}
 
+
+	//notes
+	$tmp = NotesList("procID = '$ID'");
+	if ($proc['result']['notes_count'] = $tmp['list_count']) {
+		foreach ($tmp['result'] AS $note) {
+			$note['add_user'] = $users[$note['add_user']];
+			$proc['result']['notes'][] = $note;
+		}
+	}
+	
+
 	//change history
 	$sql = "
 		SELECT ID, field, data_before, data_after, user, entry_add

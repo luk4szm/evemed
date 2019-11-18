@@ -81,6 +81,16 @@ function PatientRecon($ID)
 	}
 
 
+	//notes
+	$tmp = NotesList("patID = '$ID'");
+	if ($pat['result']['notes_count'] = $tmp['list_count']) {
+		foreach ($tmp['result'] AS $note) {
+			$note['add_user'] = $users[$note['add_user']];
+			$pat['result']['notes'][] = $note;
+		}
+	}
+
+
 	//change history
 	$sql = "
 		SELECT ID, field, data_before, data_after, user, entry_add

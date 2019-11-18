@@ -11,6 +11,13 @@ if (!isset($_SESSION['loggedUser'])) {
 
 if (!empty($get_key)) {
 
+	//service - note whole list
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/service-list.php';
+
+}
+
+if (!empty($get_key)) {
+
 	$searchID = $_GET[$get_key[0]];
 	$recon = ProcedureRecon($searchID);
 	if ($recon['code'] === 200) {
@@ -64,7 +71,7 @@ if (!empty($get_key)) {
                               <a href="/procedure.php?notes=<?= $proc['ID'] ?>" class="menu">Notatki</a>
                            </td>
                            <td class="text-right">
-                              <span class="badge badge-light badge-menu">0</span>
+                              <span class="badge badge-light badge-menu"><?= $proc['notes_count'] ?></span>
                            </td>
                         </tr>
                         <tr>

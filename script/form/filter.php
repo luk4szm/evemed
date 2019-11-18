@@ -5,7 +5,7 @@ function FormFilter($input, $mode = null)
 
 	$spec_chars = array(
 		array(
-			'in' => '&#10;',
+			'in' => '&#13;&#10;',
 			'out' => "\n",
 		),
 		array(

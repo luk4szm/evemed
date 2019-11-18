@@ -10,7 +10,6 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 if (!empty($get_key)) {
-
 	//service - add procedure to visit
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/procedure-add.php';
 	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'AddProcedureToVisit') VisitAddProcedure();
@@ -35,10 +34,11 @@ if (!empty($get_key)) {
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/visit-cancel.php';
 	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'VisitCancel') VisitCancel();
 
+	//service - note whole list
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/service-list.php';
 }
 
 if (!empty($get_key)) {
-
 	$searchID = $_GET[$get_key[0]];
 	$recon = VisitRecon($searchID);
 	if ($recon['code'] === 200) {
@@ -47,12 +47,9 @@ if (!empty($get_key)) {
 	} else {
 		$title = null;
 	}
-
 } else {
-
 	$recon['txt'] = 'Nieprawidłowe zapytanie.';
 	$title = null;
-
 }
 
 ?>
@@ -106,8 +103,7 @@ if (!empty($get_key)) {
                      </table>
 
                      <hr>
-
-                     <a href="/visits.php" class="menu">Wróc do listy</a><br>
+                     <a href="<?= $_SESSION['prev_url']; ?>" class="menu">Wróc do poprz. karty</a>
 
                   </div>
                </div>
@@ -121,7 +117,7 @@ if (!empty($get_key)) {
          <div class="col-md-9">
 
 				<?php
-            CheckSameTimeVisits($vis);
+				CheckSameTimeVisits($vis);
 				if (!empty($get_key)) {
 					switch ($get_key[0]) {
 						case 'id':
