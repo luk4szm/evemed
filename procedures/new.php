@@ -1,4 +1,5 @@
 <?php
+//TODO sprawdzenie czy nie ma zduplikowanych wpisów dot. zabiegów
 
 $step = (!isset($_SESSION['procNew'])) ? 1 : $_SESSION['procNew']['formStep'];
 
@@ -125,7 +126,7 @@ if (isset($_SESSION['procNewWarnings'])) {
             <div class="row">
                <div class="form-group col-md-12">
                   <label for="description">Opis zabiegu:</label>
-                  <textarea class="form-control" id="description" name="description" rows="2"
+                  <textarea class="form-control" id="description" name="description" rows="3"
                             maxlength="1000"><?= FormValue($form['description']) ?></textarea>
                </div>
             </div>

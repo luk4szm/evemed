@@ -10,14 +10,20 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 if (!empty($get_key)) {
+   //service - edit patient info
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/formService/edit.php';
+	if ($get_key[0] == 'edit' && isset($_POST['formStep']) && $_POST['formStep'] == 'editProcedureData') ProcedureEdit();
+
+	//service - edit patient info
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/formService/turn-off-on.php';
+	if ($get_key[0] == 'id' && isset($_POST['modalForm']) && $_POST['modalForm'] == 'ProcedureTurnOff') ProcedureTurnOff();
+	if ($get_key[0] == 'id' && isset($_POST['modalForm']) && $_POST['modalForm'] == 'ProcedureTurnOn') ProcedureTurnOn();
 
 	//service - note whole list
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/service-list.php';
-
 }
 
 if (!empty($get_key)) {
-
 	$searchID = $_GET[$get_key[0]];
 	$recon = ProcedureRecon($searchID);
 	if ($recon['code'] === 200) {
@@ -26,14 +32,10 @@ if (!empty($get_key)) {
 	} else {
 		$title = null;
 	}
-
 } else {
-
 	$recon['txt'] = 'Nieprawidłowe zapytanie.';
 	$title = null;
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -89,7 +91,7 @@ if (!empty($get_key)) {
 							<?php if ($proc['status'] == 1) { ?>
                         <a href="/procedure.php?edit=<?= $proc['ID'] ?>" class="menu">Edycja danych</a><br>
 							<?php } ?>
-                     <a href="/procedures.php" class="menu">Wróc do listy</a><br>
+                     <a href="<?= $_SESSION['prev_url']; ?>" class="menu">Wróc do poprz. karty</a>
 
                   </div>
                </div>
@@ -110,6 +112,7 @@ if (!empty($get_key)) {
 					switch ($get_key[0]) {
 						case 'id':
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/detail.php';
+							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/status_change.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-future-occurr.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-past-occurr.php';
 							break;

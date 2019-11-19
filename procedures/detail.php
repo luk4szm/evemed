@@ -6,7 +6,7 @@ global $proc; #just for turn off notification
    <div class="card-header">
 		<?= Breadcrump(
 			array(
-				'Procedury',
+				'Zabiegi',
 				$proc['name_short'],
 				'Szczegóły',
 			)

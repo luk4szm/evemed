@@ -4,7 +4,7 @@ function Modal_AddProcedureToVisit($vis)
 {
 
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/script/list.php';
-	$procedures = ProcedureList();
+	$procedures = ProcedureList('status = 1');
 
 	?>
 

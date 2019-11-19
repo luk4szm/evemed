@@ -7,7 +7,7 @@ $k = 0;
    <div class="card-header">
 		<?= Breadcrump(
 			array(
-				'Procedury',
+				'Zabiegi',
 				$proc['name_short'],
 				'W minionych wizytach',
 			)
