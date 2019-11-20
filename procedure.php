@@ -112,9 +112,9 @@ if (!empty($get_key)) {
 					switch ($get_key[0]) {
 						case 'id':
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/detail.php';
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/status_change.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-future-occurr.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-past-occurr.php';
+							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/status_change.php';
 							break;
 						case 'edit':
 							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/edit.php';

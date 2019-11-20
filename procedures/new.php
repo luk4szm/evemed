@@ -1,5 +1,4 @@
 <?php
-//TODO sprawdzenie czy nie ma zduplikowanych wpisów dot. zabiegów
 
 $step = (!isset($_SESSION['procNew'])) ? 1 : $_SESSION['procNew']['formStep'];
 

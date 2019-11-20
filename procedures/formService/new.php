@@ -44,7 +44,7 @@ function ProcedureNewAdd()
 			SELECT ID, name_short, name_full 
          FROM procedures
 			WHERE name_short LIKE '{$form['name_short']}'
- 		     AND name_full LIKE '{$form['name_full']}'
+ 		      OR name_full LIKE '{$form['name_full']}'
 		";
 		$res = MysqliQuery($sql);
 		if (mysqli_num_rows($res)) {
