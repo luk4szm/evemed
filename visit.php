@@ -9,6 +9,8 @@ if (!isset($_SESSION['loggedUser'])) {
 	exit();
 }
 
+//TODO editing visit data
+
 if (!empty($get_key)) {
 	//service - add procedure to visit
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/procedure-add.php';
@@ -21,6 +23,18 @@ if (!empty($get_key)) {
 	//service - delete procedure
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/procedure-delete.php';
 	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'DeleteVisitProcedure') VisitDeleteProcedure();
+
+	//service - add drug to visit
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/drug-add.php';
+	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'AddDrugToVisit') VisitAddDrug();
+
+	//service - edit procedure
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/drug-edit.php';
+	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'EditVisitDrug') VisitEditDrug();
+
+	//service - edit procedure
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/drug-delete.php';
+	if (isset($_POST['modalForm']) && $_POST['modalForm'] == 'DeleteVisitDrug') VisitDeleteDrug();
 
 	//service - chande date of visit
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/visit-change-date.php';
@@ -94,6 +108,14 @@ if (!empty($get_key)) {
                         </tr>
                         <tr>
                            <td>
+                              <a href="/visit.php?drugs=<?= $vis['ID'] ?>" class="menu">Przepisane leki</a>
+                           </td>
+                           <td class="text-right">
+                              <span class="badge badge-light badge-menu"><?= $vis['drugs_count'] ?></span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
                               <a href="/visit.php?notes=<?= $vis['ID'] ?>" class="menu">Notatki</a>
                            </td>
                            <td class="text-right">
@@ -124,10 +146,14 @@ if (!empty($get_key)) {
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/detail.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/status_change.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/procedures.php';
+							include $_SERVER['DOCUMENT_ROOT'] . '/visits/drugs.php';
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/notes.php';
 							break;
 						case 'procedures':
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/procedures.php';
+							break;
+						case 'drugs':
+							include $_SERVER['DOCUMENT_ROOT'] . '/visits/drugs.php';
 							break;
 						case 'notes':
 							include $_SERVER['DOCUMENT_ROOT'] . '/visits/notes.php';

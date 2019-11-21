@@ -1,13 +1,6 @@
 <?php
 global $vis; #just for turn off notification
 $k = 0;
-
-if ($vis['statusID'] == 1) {
-	$table_class = 'table-hover';
-} else {
-	$table_class = null;
-}
-
 ?>
 
    <div class="card">
@@ -25,7 +18,7 @@ if ($vis['statusID'] == 1) {
 			<?php
 			if ($vis['procedures_count'] > 0) {
 				?>
-            <table class="table table-condensed <?= $table_class ?>">
+            <table class="table table-condensed <?= $vis['statusID'] == 1 ? 'table-hover' : '' ?>">
 
                <tr>
                   <th>#</th>
@@ -83,7 +76,7 @@ if ($vis['statusID'] == 1) {
             <div class="row justify-content-center" style="margin-top: 15px">
                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ProcedureAddModal"
                        style="border-radius: 25px;">
-                  Dodaj zabieg do listy
+                  Dodaj zabieg
                </button>
             </div>
 			<?php } ?>

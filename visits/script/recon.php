@@ -8,7 +8,8 @@ function VisitRecon($ID)
 
 	//basic data
 	$sql = "
-		SELECT v.ID, v.visit_date, v.recommend,
+		SELECT v.ID, v.visit_date,
+		       v.examination, v.recommend,
 		       v.complete, v.statusID,
 		       v.patID,
 		       v.conf_date, v.conf_user, v.conf_note,
@@ -55,7 +56,7 @@ function VisitRecon($ID)
 				 p.ID AS procID, p.name_short, p.name_full
 		FROM visits_procedures AS vp
 		JOIN procedures AS p ON p.ID = vp.procID
-		WHERE vp.visID = '{$vis['result']['ID']}'
+		WHERE vp.visID = '$ID'
 	";
 	$res = MysqliQuery($sql);
 	if ($vis['result']['procedures_count'] = mysqli_num_rows($res)) {
@@ -66,6 +67,20 @@ function VisitRecon($ID)
 		}
 	} else {
 		$vis['result']['procedures_price'] = 0;
+	}
+
+
+	//visit drugs
+	$sql = "
+		SELECT v.ID, v.name, v.dose, v.quantity, v.dosage, v.refund
+		FROM visits_drugs AS v
+		WHERE v.visID = '$ID'
+	";
+	$res = MysqliQuery($sql);
+	if ($vis['result']['drugs_count'] = mysqli_num_rows($res)) {
+		while ($drug = mysqli_fetch_assoc($res)) {
+			$vis['result']['drugs'][] = $drug;
+		}
 	}
 
 

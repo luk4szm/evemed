@@ -1,14 +1,14 @@
 <?php
 
-function VisitDeleteProcedure()
+function VisitDeleteDrug()
 {
 
 	$form = $_POST;
 
 	//edit entry in database
 	$sql = "
-		DELETE FROM visits_procedures
-		WHERE ID = '{$form['procID']}'
+		DELETE FROM visits_drugs
+		WHERE ID = '{$form['ID']}'
 	";
 	$del = MysqliQuery($sql);
 
@@ -16,7 +16,7 @@ function VisitDeleteProcedure()
 	if ($del) {
 		NotifyMake(
 			'success',
-			'Usunięto zabieg'
+			'Usunięto lek'
 		);
 	}
 

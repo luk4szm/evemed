@@ -46,32 +46,39 @@ global $vis; #just for turn off notification
                      </td>
                   </tr>
 
-                  <?php if ($vis['canc_note']) { ?>
-                  <tr class="table-sm">
-                     <td>Uwagi:</td>
-                     <td colspan="2">
-								<?= $vis['canc_note'] ?>
-                     </td>
-                  </tr>
-                  <?php } ?>
+						<?php if ($vis['canc_note']) { ?>
+                     <tr class="table-sm">
+                        <td>Uwagi:</td>
+                        <td colspan="2">
+									<?= $vis['canc_note'] ?>
+                        </td>
+                     </tr>
+						<?php } ?>
 
-                  <?php if ($vis['conf_note']) { ?>
-                  <tr class="table-sm">
-                     <td>Uwagi:</td>
-                     <td colspan="2">
-								<?= $vis['conf_note'] ?>
-                     </td>
-                  </tr>
-                  <?php } ?>
+						<?php if ($vis['conf_note']) { ?>
+                     <tr class="table-sm">
+                        <td>Uwagi:</td>
+                        <td colspan="2">
+									<?= $vis['conf_note'] ?>
+                        </td>
+                     </tr>
+						<?php } ?>
 
-                  <?php if (empty($vis['canc_date'])) { ?>
-                  <tr class="table-sm">
-                     <td>Zalecenia:</td>
-                     <td colspan="2">
-								<?= FormatIsNull($vis['recommend'], 'nie uzupełniono') ?>
-                     </td>
-                  </tr>
-                  <?php } ?>
+						<?php if ($vis['statusID'] == 3) { ?>
+                     <tr class="table-sm">
+                        <td>Badanie:</td>
+                        <td colspan="2">
+									<?= FormatIsNull($vis['examination'], 'nie uzupełniono') ?>
+                        </td>
+                     </tr>
+
+                     <tr class="table-sm">
+                        <td>Zalecenia:</td>
+                        <td colspan="2">
+									<?= FormatIsNull($vis['recommend'], 'nie uzupełniono') ?>
+                        </td>
+                     </tr>
+						<?php } ?>
 
                   <tr class="table-sm">
                      <td>Data wizyty:</td>

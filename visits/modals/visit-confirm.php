@@ -33,9 +33,18 @@ function Modal_VisitConfirm($vis)
 
                   <div class="form-row justify-content-center">
                      <div class="form-group col-md-10">
+                        <label for="examination">Badanie <small>(opcjonalnie)</small>:</label>
+                        <textarea class="form-control" id="examination" name="examination" rows="3"
+                                  maxlength="1000"></textarea>
+
+                     </div>
+                  </div>
+
+                  <div class="form-row justify-content-center">
+                     <div class="form-group col-md-10">
                         <label for="recommend">Zalecenia <small>(opcjonalnie)</small>:</label>
                         <textarea class="form-control" id="recommend" name="recommend" rows="3"
-                                  maxlength="1000"><?= FormValue($vis['recommend']) ?></textarea>
+                                  maxlength="1000"></textarea>
 
                      </div>
                   </div>
@@ -44,7 +53,7 @@ function Modal_VisitConfirm($vis)
                      <div class="form-group col-md-10">
                         <label for="conf_note">Uwagi dot. wizyty <small>(opcjonalnie)</small>:</label>
                         <textarea class="form-control" id="conf_note" name="conf_note" rows="2"
-                                  maxlength="1000"><?= FormValue($vis['conf_note']) ?></textarea>
+                                  maxlength="1000"></textarea>
 
                      </div>
                   </div>

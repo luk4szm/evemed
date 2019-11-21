@@ -12,6 +12,7 @@ function VisitConfirm()
 	}
 
 	$set['conf_note'] = empty($form['conf_note']) ? "conf_note = NULL" : "conf_note = '{$form['conf_note']}'";
+	$set['examination'] = empty($form['examination']) ? "examination = NULL" : "examination = '{$form['examination']}'";
 	$set['recommend'] = empty($form['recommend']) ? "recommend = NULL" : "recommend = '{$form['recommend']}'";
 
 	//update entry
@@ -22,6 +23,7 @@ function VisitConfirm()
 		    conf_date = now(),
 		    complete = 1,
 		    statusID = 3,
+			 " . $set['examination'] . ",
 			 " . $set['recommend'] . ",
 			 " . $set['conf_note'] . "
 		WHERE ID = '{$form['visID']}'	 
