@@ -10,7 +10,7 @@ $get_key = array_keys($_GET);
 
 $now = date("Y-m-d H:i:s");
 $today = date("Y-m-d");
-$actYear = substr($today, 0, 4);
+$actYear = date("Y");
 
 function SiteTag()
 {

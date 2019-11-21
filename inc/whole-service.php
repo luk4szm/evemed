@@ -19,6 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/script/date/person-age.php';
 
 //format result
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/address.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/nr_tel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/is_null.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/list_from_line.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/price.php';

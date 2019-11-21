@@ -27,7 +27,7 @@ function FormatListFromLine($input)
 
 	} else {
 
-		return null;
+		return '<span class="gray">brak</span>';
 
 	}
 

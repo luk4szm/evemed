@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/script/employee-list.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	if (IsSiteAdmin() === false) {
@@ -11,13 +12,12 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 $title = 'Panel administratora';
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title><?= $title . SiteName() ?></title>
+   <title><?= $title . ' - ' . SiteName() ?></title>
 </head>
 <body>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/menu.php'; ?>
@@ -32,6 +32,25 @@ $title = 'Panel administratora';
          <div class="sticky-top" style="top: 70px">
             <div class="card">
                <div class="card-header">
+						Organizacja
+               </div>
+               <div class="card-body">
+
+                  <table width="100%">
+                     <tr>
+                        <td colspan="2">
+                           <a href="/admin.php?employees" class="menu">Pracownicy</a>
+                        </td>
+                     </tr>
+                  </table>
+
+               </div>
+            </div>
+         </div>
+
+         <div class="sticky-top" style="top: 70px">
+            <div class="card">
+               <div class="card-header">
 						<?= $title ?>
                </div>
                <div class="card-body">
@@ -39,14 +58,13 @@ $title = 'Panel administratora';
                   <table width="100%">
                      <tr>
                         <td colspan="2">
-                           <a href="/admin.php?basic" class="menu">Ustawienia ogólne</a>
+                           <a href="/admin.php?use-of-db" class="menu">Użycie indexów</a>
                         </td>
                      </tr>
                   </table>
 
                </div>
             </div>
-
          </div>
 
       </div>
@@ -55,19 +73,11 @@ $title = 'Panel administratora';
 			<?php
 			if (!empty($get_key)) {
 				switch ($get_key[0]) {
-					case 'id':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/detail.php';
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-future-occurr.php';
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-past-occurr.php';
+					case 'employees':
+						include $_SERVER['DOCUMENT_ROOT'] . '/admin/employees.php';
 						break;
-					case 'edit':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/edit.php';
-						break;
-					case 'notes':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/notes.php';
-						break;
-					case 'change_history':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/change-history.php';
+					case 'use-of-db':
+						include $_SERVER['DOCUMENT_ROOT'] . '/admin/use-of-db-index.php';
 						break;
 				}
 			} else {
@@ -81,10 +91,8 @@ $title = 'Panel administratora';
 </div>
 
 <?php
-
 include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
-
 ?>
 
 </body>
