@@ -29,6 +29,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/script/format/visit_status.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/database/connect.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/database/table-structure.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/database/users-list.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/script/database/pdo-connect.php';
 
 //notes
 require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/scripts.php';

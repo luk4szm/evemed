@@ -4,6 +4,7 @@
       <div class="btn-toolbar" role="toolbar">
          <div class="btn-group mr-2" role="group">
             <a class="btn btn-info navbar-btn" href="/" role="button">Eveline Cosmetics</a>
+            <a class="btn btn-outline-info navbar-btn" href="/doctors.php" role="button">Lekarze</a>
             <a class="btn btn-outline-info navbar-btn" href="/patients.php" role="button">Pacjenci</a>
             <a class="btn btn-outline-info navbar-btn" href="/visits.php" role="button">Wizyty</a>
          </div>
@@ -26,13 +27,14 @@
          </div>
       </form>
       <small class="text-right">Zalogowano jako<br>
-         <a href="/account.php" class="navbarlink"><b style="color: #111111;"><?= $_SESSION['loggedUser']['full_name'] ?></b></a>
+         <a href="/account.php" class="navbarlink"><b
+                  style="color: #111111;"><?= $_SESSION['loggedUser']['full_name'] ?></b></a>
       </small>
-      <?php if (IsSiteAdmin()) { ?>
-      <div align="right" style="margin-left: 15px;">
-         <a href="/admin.php"><img alt="wyloguj" src="/img/octicon/tools.svg" height="20px"></a>
-      </div>
-      <?php } ?>
+		<?php if (IsSiteAdmin()) { ?>
+         <div align="right" style="margin-left: 15px;">
+            <a href="/admin.php"><img alt="wyloguj" src="/img/octicon/tools.svg" height="20px"></a>
+         </div>
+		<?php } ?>
       <div align="right" style="margin-left: 15px;">
          <a href="/login.php?userLogOut"><img alt="wyloguj" src="/img/octicon/sign-out.svg" height="20px"></a>
       </div>

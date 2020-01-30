@@ -4,13 +4,14 @@ function TableStructure($table)
 {
 
 	$structure = array();
-	$sql = "SHOW FULL COLUMNS FROM " . $table;
-	$res = MysqliQuery($sql);
 	$i = 0;
-	while ($col = mysqli_fetch_assoc($res)) {
+
+	$table_columns = PDO_Query('SHOW FULL COLUMNS FROM ' . $table);
+	foreach ($table_columns AS $col) {
 		if (!empty($col['Comment'])) {
 			$structure[$i]['field'] = $col['Field'];
 			$structure[$i]['name'] = $col['Comment'];
+			$structure[$i]['type'] = $col['Type'];
 			$i++;
 		}
 	}
