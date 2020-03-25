@@ -1,5 +1,22 @@
 <?php
-$employees = EmployeeList();
+parse_str($_SERVER['QUERY_STRING'], $output);
+if (!empty($output)) {
+	switch ($output['list']) {
+		case 'dismissed':
+			$where = "hired = 0";
+			$title = "Byli pracownicy";
+			break;
+		default:
+			$where = "hired = 1";
+			$title = "Lista";
+			break;
+	}
+} else {
+	$where = "hired = 1";
+	$title = "Lista";
+}
+
+$employees = EmployeeList($where, 'ID ASC');
 $k = 0;
 ?>
 
@@ -8,7 +25,7 @@ $k = 0;
 		<?= Breadcrump(
 			array(
 				'Kadra',
-				'Lista',
+				$title
 			)
 		) ?>
    </div>
@@ -19,35 +36,32 @@ $k = 0;
 			if ($employees['list_count'] > 0) {
 				?>
 
-            <table class="table table-hover table-condensed">
+            <table class="table table-condensed">
 
                <tr>
                   <th>#</th>
                   <th>Pracownik</th>
-                  <th>Miasto</th>
+                  <th>E-mail</th>
+                  <th>Telefon</th>
                   <th class="min-width"></th>
                </tr>
 
 					<?php
 					for ($i = 0; $i < $employees['list_count']; $i++) {
-						$pat = $employees['result'][$i];
+						$emp = $employees['result'][$i];
 						?>
-                  <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/patient.php?id=<?= $pat['ID'] ?>'">
+                  <tr class="table-sm">
                      <td>
 								<?= ++$k ?>
                      </td>
                      <td class="f500">
-								<?= $pat['full_name'] ?>
+								<?= $emp['full_name'] ?>
                      </td>
                      <td>
-								<?= DateConvert($pat['date_of_birth']) ?>
+                        &#9993; <a href="mailto:<?= $emp['email'] ?>"><?= $emp['email'] ?></a>
                      </td>
                      <td>
-								<?= $pat['city'] ?>
-                     </td>
-                     <td class="text-center">
-								<?= $pat['visits_count'] ?>
+                        &#9990; <a href="tel:<?= $emp['mobile_nr'] ?>"><?= FormatNrTel($emp['mobile_nr']) ?></a>
                      </td>
                      <td>
                         <i class="fas fa-angle-right fa-fw" aria-hidden="true"></i>
@@ -59,7 +73,7 @@ $k = 0;
 
 				<?php
 			} else {
-				ShowSimpleInfo('Brak pacjentów');
+				ShowSimpleInfo('Lista jest pusta.');
 			}
 		} else {
 			ShowSimpleInfo($employees['txt']);

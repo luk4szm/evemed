@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/admin/script/employee-list.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/employees/script/list.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	if (IsSiteAdmin() === false) {

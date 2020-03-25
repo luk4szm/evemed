@@ -1,3 +1,4 @@
 .idea/
 script/database/connect.php
+script/database/db_config.php
 inc/login/

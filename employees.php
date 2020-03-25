@@ -8,12 +8,6 @@ if (!isset($_SESSION['loggedUser'])) {
 	header('Location: /login.php');
 	exit();
 }
-
-if (!empty($get_key)) {
-	//service - adding new patient
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/formService/new.php';
-	if ($get_key[0] == 'new' && isset($_POST['formStep'])) PatientNewAdd();
-}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
