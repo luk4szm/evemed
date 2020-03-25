@@ -7,6 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/config.php';
 
 //basic
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/basic/is_admin.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/script/basic/is_logged.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/basic/breadcrumb.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/script/basic/progress_bar.php';

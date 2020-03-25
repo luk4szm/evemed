@@ -2,9 +2,11 @@
 
 mb_internal_encoding("UTF-8");
 
-
-$dbName = 'evemed';
-
+if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+	$dbName = 'evemed';
+} else {
+	$dbName = 'vitro_evemed';
+}
 
 $get_key = array_keys($_GET);
 

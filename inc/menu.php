@@ -26,10 +26,12 @@
             <input type="text" class="form-control" name="query" placeholder="Szukaj...">
          </div>
       </form>
+      <?php if (IsLogged()) {?>
       <small class="text-right">Zalogowano jako<br>
          <a href="/account.php" class="navbarlink"><b
                   style="color: #111111;"><?= $_SESSION['loggedUser']['full_name'] ?></b></a>
       </small>
+      <?php } ?>
 		<?php if (IsSiteAdmin()) { ?>
          <div align="right" style="margin-left: 15px;">
             <a href="/admin.php"><img alt="wyloguj" src="/img/octicon/tools.svg" height="20px"></a>

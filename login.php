@@ -20,22 +20,18 @@ if (isset($_SESSION['loggedUser'])) {
 
 //when user send form data - step 1
 if (isset($_POST['UserLogIn']) && FormHashValidation($_POST['csrf_token'])) {
-
 	$_SESSION['loginForm']['login'] = FormFilter($_POST['login'], 'login');
 	$_SESSION['loginForm']['password'] = $_POST['password'];
 
 	header('Location: ' . $_SERVER['REQUEST_URI']);
 	exit();
-
 }
 
 //when user send form data - step 2
 if (isset($_SESSION['loginForm']['login']) && isset($_SESSION['loginForm']['password'])) {
-
 	CheckUser($_SESSION['loginForm']['login'], $_SESSION['loginForm']['password']);
 
 	if (isset($_SESSION['loginForm']['logUserID'])) {
-
 		LoginUser($_SESSION['loginForm']['logUserID']);
 
 		unset($_SESSION['loginForm']);
@@ -49,9 +45,7 @@ if (isset($_SESSION['loginForm']['login']) && isset($_SESSION['loginForm']['pass
 		}
 
 		exit();
-
 	}
-
 }
 
 $hash = FormHashGenerate('^&*loginPage' . $_SERVER['SCRIPT_FILENAME'] . '2573^&');
