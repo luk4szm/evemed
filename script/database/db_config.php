@@ -8,10 +8,10 @@ if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
 		'database' => 'evemed'
 	];
 } else {
-	[
+	return [
 		'host' => 'sql5.progreso.pl',
 		'user' => 'vitro_evemed',
 		'password' => 'rQD!GdYQyXy8VRk',
-		'database' => 'evemed'
+		'database' => 'vitro_evemed'
 	];
 }
