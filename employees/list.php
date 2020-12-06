@@ -16,7 +16,7 @@ if (!empty($output)) {
 	$title = "Lista";
 }
 
-$employees = EmployeeList($where, 'ID ASC');
+$employees = EmployeeList($where, 'id ASC');
 $k = 0;
 ?>
 

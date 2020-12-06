@@ -2,7 +2,6 @@
 
 function UserBrowser()
 {
-
 	$arr_browsers = ["Firefox", "Chrome", "Safari", "Opera", "MSIE", "Trident", "Edge"];
 
 	$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -18,5 +17,4 @@ function UserBrowser()
 	if ($user_browser == 'MSIE') $user_browser = 'Internet Explorer';
 
 	return $user_browser;
-
 }

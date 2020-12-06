@@ -16,14 +16,14 @@ function EmployeeList($where = null, $order = null)
 	}
 
 	$sql = "
-		SELECT e.ID, e.first_name, e.last_name,
+		SELECT e.id, e.first_name, e.last_name,
 		       u.login, 
 		       CONCAT(e.first_name, ' ', e.last_name) AS full_name,
 		       u.active, u.admin, u.login_err,
 		       e.hired, e.email, e.mobile_nr,
 		       e.add_user, e.entry_add
 		FROM employees AS e
-	   JOIN users AS u ON u.ID = e.ID
+	   JOIN users AS u ON u.id = e.id
 		" . $where . "
 		" . $order;
 

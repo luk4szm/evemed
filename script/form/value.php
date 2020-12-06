@@ -2,7 +2,6 @@
 
 function FormValue($value, $mode = null)
 {
-
 	if (!empty($value)) {
 		switch ($mode) {
 			case 'datetime':
@@ -14,5 +13,4 @@ function FormValue($value, $mode = null)
 	} else {
 		return null;
 	}
-
 }

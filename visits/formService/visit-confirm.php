@@ -19,14 +19,14 @@ function VisitConfirm()
 	$sql = "
 		UPDATE visits
 		SET visit_date = '{$form['visit_date']}',
-		    conf_user = '{$_SESSION['loggedUser']['ID']}',
+		    conf_user = '{$_SESSION['loggedUser']['id']}',
 		    conf_date = now(),
 		    complete = 1,
-		    statusID = 3,
+		    status_id = 3,
 			 " . $set['examination'] . ",
 			 " . $set['recommend'] . ",
 			 " . $set['conf_note'] . "
-		WHERE ID = '{$form['visID']}'	 
+		WHERE id = '{$form['vis_id']}'	 
 		";
 	$ins = MysqliQuery($sql);
 

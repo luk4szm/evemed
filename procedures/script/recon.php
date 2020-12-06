@@ -1,6 +1,6 @@
 <?php
 
-function ProcedureRecon($ID)
+function ProcedureRecon($id)
 {
 
 	$table_structure = TableStructure('procedures');
@@ -8,11 +8,11 @@ function ProcedureRecon($ID)
 
 	//basic data
 	$sql = "
-		SELECT p.ID, p.status, p.name_short, p.name_full,
+		SELECT p.id, p.status, p.name_short, p.name_full,
 		       p.description, p.price,
 		       p.add_user, p.entry_add
 		FROM procedures AS p
-		WHERE p.ID = '$ID'
+		WHERE p.id = '$id'
 	";
 	$proc = ResponseDetail(MysqliQuery($sql));
 
@@ -23,14 +23,14 @@ function ProcedureRecon($ID)
 
 	//in pasts visits occurrence
 	$sql = "
-		SELECT vp.ID, vp.visID, vp.price,
-		       v.visit_date, v.statusID,
+		SELECT vp.id, vp.vis_id, vp.price,
+		       v.visit_date, v.status_id,
 		       CONCAT(p.first_name, ' ', p.last_name) AS pat_full_name
 		FROM visits_procedures AS vp
-		JOIN visits AS v ON v.ID = vp.visID
-		JOIN patients AS p ON p.ID = v.patID
-		WHERE procID = '$ID'
-        AND v.statusID = 3
+		JOIN visits AS v ON v.id = vp.vis_id
+		JOIN patients AS p ON p.id = v.pat_id
+		WHERE proc_id = '$id'
+        AND v.status_id = 3
       ORDER BY v.visit_date DESC
 	";
 	$res = MysqliQuery($sql);
@@ -49,14 +49,14 @@ function ProcedureRecon($ID)
 
 	//in future visits occurrence
 	$sql = "
-		SELECT vp.ID, vp.visID, vp.price,
-		       v.visit_date, v.statusID,
+		SELECT vp.id, vp.vis_id, vp.price,
+		       v.visit_date, v.status_id,
 		       CONCAT(p.first_name, ' ', p.last_name) AS pat_full_name
 		FROM visits_procedures AS vp
-		JOIN visits AS v ON v.ID = vp.visID
-		JOIN patients AS p ON p.ID = v.patID
-		WHERE procID = '$ID'
-        AND v.statusID = 1
+		JOIN visits AS v ON v.id = vp.vis_id
+		JOIN patients AS p ON p.id = v.pat_id
+		WHERE proc_id = '$id'
+        AND v.status_id = 1
       ORDER BY v.visit_date DESC
 	";
 	$res = MysqliQuery($sql);
@@ -75,7 +75,7 @@ function ProcedureRecon($ID)
 
 
 	//notes
-	$tmp = NotesList("procID = '$ID'");
+	$tmp = NotesList("proc_id = '$id'");
 	if ($proc['result']['notes_count'] = $tmp['list_count']) {
 		foreach ($tmp['result'] AS $note) {
 			$note['add_user'] = $users[$note['add_user']];
@@ -86,9 +86,9 @@ function ProcedureRecon($ID)
 
 	//change history
 	$sql = "
-		SELECT ID, field, data_before, data_after, user, entry_add
+		SELECT id, field, data_before, data_after, user, entry_add
 		FROM procedures_changehistory
-		WHERE procID = '$ID'
+		WHERE proc_id = '$id'
 		ORDER BY entry_add ASC
    ";
 	$res = MysqliQuery($sql);

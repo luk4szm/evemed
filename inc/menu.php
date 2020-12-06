@@ -4,7 +4,6 @@
       <div class="btn-toolbar" role="toolbar">
          <div class="btn-group mr-2" role="group">
             <a class="btn btn-info navbar-btn" href="/" role="button">Eveline Cosmetics</a>
-            <a class="btn btn-outline-info navbar-btn" href="/employees.php" role="button">Kadra</a>
             <a class="btn btn-outline-info navbar-btn" href="/patients.php" role="button">Pacjenci</a>
             <a class="btn btn-outline-info navbar-btn" href="/visits.php" role="button">Wizyty</a>
          </div>
@@ -32,7 +31,7 @@
                   style="color: #111111;"><?= $_SESSION['loggedUser']['full_name'] ?></b></a>
       </small>
       <?php } ?>
-		<?php if (IsSiteAdmin()) { ?>
+		<?php if (is_admin()) { ?>
          <div align="right" style="margin-left: 15px;">
             <a href="/admin.php"><img alt="wyloguj" src="/img/octicon/tools.svg" height="20px"></a>
          </div>

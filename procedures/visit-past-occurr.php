@@ -34,7 +34,7 @@ $k = 0;
 					$vis = $proc['visit_past_occurr'][$i];
 					?>
                <tr class="table-sm" style="cursor: pointer;"
-                   onclick="window.location='/visit.php?id=<?= $vis['visID'] ?>'">
+                   onclick="window.location='/visit.php?id=<?= $vis['vis_id'] ?>'">
                   <td>
 							<?= ++$k ?>
                   </td>

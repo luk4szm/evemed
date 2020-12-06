@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/login/checkUser.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/login/loginUser.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/inc/login/checkUser.php';
+require_once __DIR__ . '/inc/login/loginUser.php';
+require_once __DIR__ . '/inc/login/login_events.php';
 
 //user logout
 if (isset($_GET['userLogOut'])) {
@@ -31,17 +32,18 @@ if (isset($_POST['UserLogIn']) && FormHashValidation($_POST['csrf_token'])) {
 if (isset($_SESSION['loginForm']['login']) && isset($_SESSION['loginForm']['password'])) {
 	CheckUser($_SESSION['loginForm']['login'], $_SESSION['loginForm']['password']);
 
-	if (isset($_SESSION['loginForm']['logUserID'])) {
-		LoginUser($_SESSION['loginForm']['logUserID']);
+	if (isset($_SESSION['loginForm']['log_user_id'])) {
+		LoginUser($_SESSION['loginForm']['log_user_id']);
+		LoginEvents();
 
 		unset($_SESSION['loginForm']);
 		unset($_SESSION['csrf_hash']);
 
 		if (isset($_SESSION['prevURL'])) {
-		   header('Location: ' . $_SESSION['prevURL']);
-		   unset($_SESSION['prevURL']);
+			header('Location: ' . $_SESSION['prevURL']);
+			unset($_SESSION['prevURL']);
 		} else {
-		   header('Location: /index.php');
+			header('Location: /index.php');
 		}
 
 		exit();
@@ -54,8 +56,8 @@ $hash = FormHashGenerate('^&*loginPage' . $_SERVER['SCRIPT_FILENAME'] . '2573^&'
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title>Logowanie - <?= SiteName() ?></title>
+	<?php include __DIR__ . '/inc/head.php'; ?>
+   <title>Logowanie - <?= SITE_NAME ?></title>
 </head>
 <body>
 
@@ -124,8 +126,8 @@ $hash = FormHashGenerate('^&*loginPage' . $_SERVER['SCRIPT_FILENAME'] . '2573^&'
 
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
+include __DIR__ . '/inc/foot.php';
+include __DIR__ . '/inc/notify.php';
 
 ?>
 

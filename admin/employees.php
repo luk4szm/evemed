@@ -1,5 +1,5 @@
 <?php
-$employees = EmployeeList(null, 'e.ID ASC');
+$employees = EmployeeList(null, 'e.id ASC');
 $k = 0;
 ?>
 
@@ -35,12 +35,12 @@ $k = 0;
 						$emp = $employees['result'][$i];
 						?>
                   <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/patient.php?id=<?= $emp['ID'] ?>'">
+                      onclick="window.location='/patient.php?id=<?= $emp['id'] ?>'">
                      <td>
 								<?= ++$k ?>
                      </td>
                      <td class="f500">
-                        <small>[ID: <?= $emp['ID'] ?>]</small> <?= $emp['login'] ?>
+                        <small>[id: <?= $emp['id'] ?>]</small> <?= $emp['login'] ?>
                      </td>
                      <td class="f500">
 								<?= $emp['full_name'] ?>

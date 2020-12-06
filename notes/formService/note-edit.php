@@ -15,7 +15,7 @@ function ItemNoteEdit()
 	$sql = "
 		UPDATE notes
 		SET txt = '{$form['txt']}'
-		WHERE ID = '{$form['ID']}'
+		WHERE id = '{$form['id']}'
 	";
 	$edit = MysqliQuery($sql);
 

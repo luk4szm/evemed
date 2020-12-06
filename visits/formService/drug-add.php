@@ -14,13 +14,13 @@ function VisitAddDrug()
 	//add to database
 	$sql = "
 		INSERT INTO visits_drugs
-		SET visID = '{$form['visID']}',
+		SET vis_id = '{$form['vis_id']}',
 			 name = '{$form['name']}',
 			 dose = '{$form['dose']}',
 			 quantity = '{$form['quantity']}',
 			 dosage = '{$form['dosage']}',
 			 refund = '{$form['refund']}',
-			 add_user = '{$_SESSION['loggedUser']['ID']}'
+			 add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 	$ins = MysqliQuery($sql);
 

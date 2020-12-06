@@ -61,9 +61,9 @@ function VisitNewAdd()
 		//add to database
 		$sql = "
 			INSERT INTO visits
-			SET patID = '{$form['patID']}',
+			SET pat_id = '{$form['pat_id']}',
 			    visit_date = '{$form['visit_date']}',
-				 add_user = '{$_SESSION['loggedUser']['ID']}'
+				 add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 		$ins = MysqliQuery($sql);
 
@@ -75,18 +75,18 @@ function VisitNewAdd()
 			);
 		}
 
-		//get ID of new visit
+		//get id of new visit
 		$sql = "
-			SELECT ID FROM visits
-			WHERE add_user = '{$_SESSION['loggedUser']['ID']}'
-			ORDER BY ID DESC LIMIT 1
+			SELECT id FROM visits
+			WHERE add_user = '{$_SESSION['loggedUser']['id']}'
+			ORDER BY id DESC LIMIT 1
 		";
 		$vis = mysqli_fetch_assoc(MysqliQuery($sql));
 
 		unset($_SESSION['visNew']);
 		unset($_SESSION['visNewWarnings']);
 		unset($_SESSION['visNewErrors']);
-		header('Location: /visit.php?id=' . $vis['ID']);
+		header('Location: /visit.php?id=' . $vis['id']);
 		exit();
 
 	}

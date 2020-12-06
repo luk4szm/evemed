@@ -15,10 +15,10 @@ function VisitAddProcedure()
 	//add to database
 	$sql = "
 		INSERT INTO visits_procedures
-		SET visID = '{$form['visID']}',
-			 procID = '{$form['procID']}',
+		SET vis_id = '{$form['vis_id']}',
+			 proc_id = '{$form['proc_id']}',
 			 price = '{$form['price']}',
-			 add_user = '{$_SESSION['loggedUser']['ID']}'
+			 add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 	$ins = MysqliQuery($sql);
 

@@ -2,9 +2,7 @@
 
 function Modal_VisitConfirm($vis)
 {
-
 	?>
-
    <div class="modal fade" id="VisitConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
         aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -19,7 +17,7 @@ function Modal_VisitConfirm($vis)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="visID" value="<?= $vis['ID'] ?>">
+               <input type="hidden" name="vis_id" value="<?= $vis['id'] ?>">
 
                <div class="modal-body text-center">
 
@@ -28,6 +26,12 @@ function Modal_VisitConfirm($vis)
                         <label for="visit_date">Data wizyty:</label>
                         <input type="datetime-local" class="form-control" id="visit_date" name="visit_date" step="900"
                                value="<?= FormValue($vis['visit_date'], 'datetime') ?>" required>
+                     </div>
+                  </div>
+
+                  <div class="form-row justify-content-center">
+                     <div class="form-group col-md-12">
+                        Ostateczna cena wizyty: <span class="f500"><?= FormatPrice($vis['procedures_price'])?></span>?
                      </div>
                   </div>
 
@@ -73,5 +77,4 @@ function Modal_VisitConfirm($vis)
    </div>
 
 	<?php
-
 }

@@ -16,7 +16,7 @@ function VisitEditProcedure()
 	$sql = "
 		UPDATE visits_procedures
 		SET price = '{$form['price']}'
-		WHERE ID = '{$form['procID']}'
+		WHERE id = '{$form['proc_id']}'
 	";
 	$edit = MysqliQuery($sql);
 

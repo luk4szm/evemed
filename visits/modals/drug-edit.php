@@ -4,7 +4,7 @@ function Modal_EditVisitDrug($drug)
 {
 	?>
 
-   <div class="modal fade" id="DrugEditModal<?= $drug['ID'] ?>" tabindex="-1" role="dialog"
+   <div class="modal fade" id="DrugEditModal<?= $drug['id'] ?>" tabindex="-1" role="dialog"
         aria-labelledby="ModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
@@ -18,7 +18,7 @@ function Modal_EditVisitDrug($drug)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="ID" value="<?= $drug['ID'] ?>">
+               <input type="hidden" name="id" value="<?= $drug['id'] ?>">
 
                <div class="modal-body text-center">
 

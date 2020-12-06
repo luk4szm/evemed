@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/employees/scripts.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/inc/employees/scripts.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
@@ -12,15 +12,15 @@ if (!isset($_SESSION['loggedUser'])) {
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title>Kadra - <?= SiteName() ?></title>
+	<?php include __DIR__ . '/inc/head.php'; ?>
+   <title>Kadra - <?= SITE_NAME ?></title>
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/menu.php'; ?>
+<?php include __DIR__ . '/inc/menu.php'; ?>
 
 <div class="container">
 
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/glob-vars.php'; ?>
+	<?php include __DIR__ . '/inc/glob-vars.php'; ?>
 
    <div class="row justify-content-center">
       <div class="col-md-3">
@@ -61,14 +61,14 @@ if (!isset($_SESSION['loggedUser'])) {
 			if (!empty($get_key)) {
 				switch ($get_key[0]) {
 					case 'list':
-						include $_SERVER['DOCUMENT_ROOT'] . '/employees/list.php';
+						include __DIR__ . '/employees/list.php';
 						break;
 					case 'new':
-						include $_SERVER['DOCUMENT_ROOT'] . '/employees/new.php';
+						include __DIR__ . '/employees/new.php';
 						break;
 				}
 			} else {
-				include $_SERVER['DOCUMENT_ROOT'] . '/employees/list.php';
+				include __DIR__ . '/employees/list.php';
 			}
 			?>
 
@@ -77,8 +77,8 @@ if (!isset($_SESSION['loggedUser'])) {
 </div>
 
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
+include __DIR__ . '/inc/foot.php';
+include __DIR__ . '/inc/notify.php';
 ?>
 
 </body>

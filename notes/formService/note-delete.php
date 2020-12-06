@@ -8,7 +8,7 @@ function ItemNoteDelete()
 	//delete entry from database
 	$sql = "
 		DELETE FROM notes
-		WHERE ID = '{$form['ID']}'
+		WHERE id = '{$form['id']}'
 	";
 	$edit = MysqliQuery($sql);
 

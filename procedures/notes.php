@@ -43,13 +43,13 @@ $k = 0;
                      </td>
                      <td class="text-center" style="padding: 0">
 								<?php
-								if ($note['add_user']['ID'] === $_SESSION['loggedUser']['ID']) {
+								if ($note['add_user']['id'] === $_SESSION['loggedUser']['id']) {
 									?>
                            <div class="d-flex justify-content-around">
-                              <a href="" data-toggle="modal" data-target="#NoteEditModal<?= $note['ID'] ?>">
+                              <a href="" data-toggle="modal" data-target="#NoteEditModal<?= $note['id'] ?>">
                                  <img title="edytuj" alt="edytuj" class="on-hover" src="/img/octicon/pencil.svg">
                               </a>
-                              <a href="" data-toggle="modal" data-target="#NoteDeleteModal<?= $note['ID'] ?>">
+                              <a href="" data-toggle="modal" data-target="#NoteDeleteModal<?= $note['id'] ?>">
                                  <img title="usuń" alt="usuń" class="on-hover" src="/img/octicon/trashcan.svg">
                               </a>
                            </div>
@@ -76,12 +76,12 @@ $k = 0;
    </div>
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-add.php';
-Modal_AddNoteToItem('procID', $proc['ID']);
+require_once __MDIR__ . '/notes/modals/note-add.php';
+Modal_AddNoteToItem('proc_id', $proc['id']);
 
 if ($proc['notes_count']) {
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-edit.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-del.php';
+	require_once __MDIR__ . '/notes/modals/note-edit.php';
+	require_once __MDIR__ . '/notes/modals/note-del.php';
 	foreach ($proc['notes'] AS $note) {
 		Modal_EditItemNote($note);
 		Modal_DeleteItemNote($note);

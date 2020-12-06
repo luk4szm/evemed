@@ -1,5 +1,5 @@
 <?php
-$visits = VisitList('v.statusID = 3', 'v.visit_date DESC');
+$visits = VisitList('v.status_id = 3', 'v.visit_date DESC');
 $k = 0;
 ?>
 
@@ -35,7 +35,7 @@ $k = 0;
 						$vis = $visits['result'][$i];
 						?>
                   <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/visit.php?id=<?= $vis['ID'] ?>'">
+                      onclick="window.location='/visit.php?id=<?= $vis['id'] ?>'">
                      <td>
 								<?= ++$k ?>
                      </td>

@@ -35,7 +35,7 @@ global $pat; #just for turn off notification
 					$vis = $pat['visits_canc'][$i];
 					?>
                <tr class="table-sm" style="cursor: pointer;"
-                   onclick="window.location='/visit.php?id=<?= $vis['ID'] ?>'">
+                   onclick="window.location='/visit.php?id=<?= $vis['id'] ?>'">
                   <td class="min-width">
 							<?= ++$k ?>
                   </td>

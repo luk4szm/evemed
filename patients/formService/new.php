@@ -41,7 +41,7 @@ function PatientNewAdd()
 
 		//check for duplicates
 		$sql = "
-			SELECT ID, first_name, last_name, 
+			SELECT id, first_name, last_name, 
 			       CONCAT(first_name, ' ', last_name) AS full_name
          FROM patients
 			WHERE first_name LIKE '{$form['first_name']}'
@@ -94,7 +94,7 @@ function PatientNewAdd()
 			    " . $set['allergy'] . ",
 			    " . $set['chronic_disease'] . ",
 			    " . $set['drugs'] . ",
-				add_user = '{$_SESSION['loggedUser']['ID']}'
+				add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 		$ins = MysqliQuery($sql);
 
@@ -106,18 +106,18 @@ function PatientNewAdd()
 			);
 		}
 
-		//get ID of new patient
+		//get id of new patient
 		$sql = "
-			SELECT ID FROM patients
-			WHERE add_user = '{$_SESSION['loggedUser']['ID']}'
-			ORDER BY ID DESC LIMIT 1
+			SELECT id FROM patients
+			WHERE add_user = '{$_SESSION['loggedUser']['id']}'
+			ORDER BY id DESC LIMIT 1
 		";
 		$pat = mysqli_fetch_assoc(MysqliQuery($sql));
 
 		unset($_SESSION['patNew']);
 		unset($_SESSION['patNewWarnings']);
 		unset($_SESSION['patNewErrors']);
-		header('Location: /patient.php?id=' . $pat['ID']);
+		header('Location: /patient.php?id=' . $pat['id']);
 		exit();
 
 	}

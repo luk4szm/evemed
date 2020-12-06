@@ -17,7 +17,7 @@ function Modal_ProcedureTurnOff($proc)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="procID" value="<?= $proc['ID'] ?>">
+               <input type="hidden" name="proc_id" value="<?= $proc['id'] ?>">
 
                <div class="modal-body text-center">
 

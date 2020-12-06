@@ -18,7 +18,7 @@ function NewNoteAdd()
 		INSERT INTO notes
 		SET " . $element_id . ",
 			 txt = '{$form['txt']}',
-			 add_user = '{$_SESSION['loggedUser']['ID']}'
+			 add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 	$ins = MysqliQuery($sql);
 

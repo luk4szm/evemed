@@ -16,11 +16,11 @@ function VisitCancel()
 	//update entry
 	$sql = "
 		UPDATE visits
-		SET canc_user = '{$_SESSION['loggedUser']['ID']}',
+		SET canc_user = '{$_SESSION['loggedUser']['id']}',
 		    canc_date = now(),
-		    statusID = 2,
+		    status_id = 2,
 			 " . $set['canc_note'] . "
-		WHERE ID = '{$form['visID']}'	 
+		WHERE id = '{$form['vis_id']}'	 
 		";
 	$ins = MysqliQuery($sql);
 

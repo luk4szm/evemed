@@ -16,11 +16,11 @@ function NotesList($where = null, $order = null)
 	}
 
 	$sql = "
-		SELECT n.ID, n.txt, 
+		SELECT n.id, n.txt, 
 				 n.add_user, n.entry_add
 		FROM notes AS n
 		" . $where . "
-		GROUP BY n.ID
+		GROUP BY n.id
 		HAVING COUNT(*) > 0
 		" . $order;
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/visits/scripts.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/inc/visits/scripts.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
@@ -11,22 +11,24 @@ if (!isset($_SESSION['loggedUser'])) {
 
 if (!empty($get_key)) {
    //service - adding new visit
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/formService/new.php';
+	require_once __DIR__ . '/visits/formService/new.php';
 	if ($get_key[0] == 'new' && isset($_POST['formStep'])) VisitNewAdd();
 }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title>Wizyty - <?= SiteName() ?></title>
+	<?php include __DIR__ . '/inc/head.php'; ?>
+   <title>Wizyty - <?= SITE_NAME ?></title>
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/menu.php'; ?>
+
+<?php
+include __DIR__ . '/inc/menu.php';
+include __DIR__ . '/inc/glob-vars.php';
+?>
 
 <div class="container">
-
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/glob-vars.php'; ?>
 
    <div class="row justify-content-center">
       <div class="col-md-3">
@@ -56,15 +58,10 @@ if (!empty($get_key)) {
                      </tr>
                   </table>
 
-                  <hr>
-
-                  <table width="100%">
-                     <tr>
-                        <td colspan="2">
-                           <a href="/visits.php?new" class="menu">Dodaj nową wizytę</a>
-                        </td>
-                     </tr>
-                  </table>
+                  <div class="row justify-content-center" style="margin-top: 15px">
+                     <a class="btn btn-outline-info navbar-btn" href="/visits.php?new" role="button"
+                        style="border-radius: 25px;">Zarejestruj nową wizytę</a>
+                  </div>
 
                </div>
             </div>
@@ -77,20 +74,20 @@ if (!empty($get_key)) {
 			if (!empty($get_key)) {
 				switch ($get_key[0]) {
 					case 'list_future':
-						include $_SERVER['DOCUMENT_ROOT'] . '/visits/list_future.php';
+						include __DIR__ . '/visits/list_future.php';
 						break;
 					case 'list_past':
-						include $_SERVER['DOCUMENT_ROOT'] . '/visits/list_past.php';
+						include __DIR__ . '/visits/list_past.php';
 						break;
 					case 'list_cancel':
-						include $_SERVER['DOCUMENT_ROOT'] . '/visits/list_cancel.php';
+						include __DIR__ . '/visits/list_cancel.php';
 						break;
 					case 'new':
-						include $_SERVER['DOCUMENT_ROOT'] . '/visits/new.php';
+						include __DIR__ . '/visits/new.php';
 						break;
 				}
 			} else {
-				include $_SERVER['DOCUMENT_ROOT'] . '/visits/list_future.php';
+				include __DIR__ . '/visits/list_future.php';
 			}
 			?>
 
@@ -100,8 +97,8 @@ if (!empty($get_key)) {
 
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
+include __DIR__ . '/inc/foot.php';
+include __DIR__ . '/inc/notify.php';
 
 ?>
 

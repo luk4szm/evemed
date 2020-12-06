@@ -1,6 +1,6 @@
 <?php
 
-function VisitRecon($ID)
+function VisitRecon($id)
 {
 
 	$table_structure = TableStructure('visits');
@@ -8,29 +8,29 @@ function VisitRecon($ID)
 
 	//basic data
 	$sql = "
-		SELECT v.ID, v.visit_date,
+		SELECT v.id, v.visit_date,
 		       v.examination, v.recommend,
-		       v.complete, v.statusID,
-		       v.patID,
+		       v.complete, v.status_id,
+		       v.pat_id,
 		       v.conf_date, v.conf_user, v.conf_note,
 		       v.canc_date, v.canc_user, v.canc_note,
 		       v.add_user, v.entry_add
 		FROM visits AS v
-		WHERE v.ID = '$ID'
+		WHERE v.id = '$id'
 	";
 	$vis = ResponseDetail(MysqliQuery($sql));
 
 
 	//patient
 	$sql = "
-		SELECT c.ID, c.first_name, c.last_name,
+		SELECT c.id, c.first_name, c.last_name,
 		       CONCAT(c.first_name, ' ', c.last_name) AS full_name,
 		       c.PESEL, c.gender, c.date_of_birth,
 		       c.street, c.postal_code, c.city, 
 				 c.allergy, c.chronic_disease, c.drugs,
 		       c.entry_add
 		FROM patients AS c
-		WHERE c.ID = '{$vis['result']['patID']}'
+		WHERE c.id = '{$vis['result']['pat_id']}'
 	";
 	$vis['result']['patient'] = mysqli_fetch_assoc(MysqliQuery($sql));
 	$vis['result']['patient']['age'] = PersonAge($vis['result']['patient']['date_of_birth']);
@@ -52,11 +52,11 @@ function VisitRecon($ID)
 
 	//visit procedures
 	$sql = "
-		SELECT vp.ID, vp.price,
-				 p.ID AS procID, p.name_short, p.name_full
+		SELECT vp.id, vp.price,
+				 p.id AS proc_id, p.name_short, p.name_full
 		FROM visits_procedures AS vp
-		JOIN procedures AS p ON p.ID = vp.procID
-		WHERE vp.visID = '$ID'
+		JOIN procedures AS p ON p.id = vp.proc_id
+		WHERE vp.vis_id = '$id'
 	";
 	$res = MysqliQuery($sql);
 	if ($vis['result']['procedures_count'] = mysqli_num_rows($res)) {
@@ -72,9 +72,9 @@ function VisitRecon($ID)
 
 	//visit drugs
 	$sql = "
-		SELECT v.ID, v.name, v.dose, v.quantity, v.dosage, v.refund
+		SELECT v.id, v.name, v.dose, v.quantity, v.dosage, v.refund
 		FROM visits_drugs AS v
-		WHERE v.visID = '$ID'
+		WHERE v.vis_id = '$id'
 	";
 	$res = MysqliQuery($sql);
 	if ($vis['result']['drugs_count'] = mysqli_num_rows($res)) {
@@ -85,7 +85,7 @@ function VisitRecon($ID)
 
 
 	//notes
-	$tmp = NotesList("visID = '$ID'");
+	$tmp = NotesList("vis_id = '$id'");
 	if ($vis['result']['notes_count'] = $tmp['list_count']) {
 		foreach ($tmp['result'] AS $note) {
 			$note['add_user'] = $users[$note['add_user']];
@@ -95,9 +95,9 @@ function VisitRecon($ID)
 
 	//change history
 	$sql = "
-		SELECT ID, field, data_before, data_after, user, entry_add
+		SELECT id, field, data_before, data_after, user, entry_add
 		FROM visits_changehistory
-		WHERE visID = '$ID'
+		WHERE vis_id = '$id'
 		ORDER BY entry_add ASC
    ";
 	$res = MysqliQuery($sql);

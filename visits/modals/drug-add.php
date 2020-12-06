@@ -18,7 +18,7 @@ function Modal_AddDrugToVisit($vis)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="visID" value="<?= $vis['ID'] ?>">
+               <input type="hidden" name="vis_id" value="<?= $vis['id'] ?>">
 
                <div class="modal-body text-center">
 

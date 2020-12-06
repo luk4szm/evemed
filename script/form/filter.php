@@ -2,7 +2,6 @@
 
 function FormFilter($input, $mode = null)
 {
-
 	$spec_chars = array(
 		array(
 			'in' => '&#13;&#10;',
@@ -45,5 +44,4 @@ function FormFilter($input, $mode = null)
 		default:
 			return trim(str_replace('&#13;&#10;', "\n", filter_var($input, FILTER_SANITIZE_SPECIAL_CHARS)));
 	}
-
 }

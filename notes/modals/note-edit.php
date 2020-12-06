@@ -3,7 +3,7 @@ function Modal_EditItemNote($note)
 {
 	?>
 
-   <div class="modal fade" id="NoteEditModal<?= $note['ID'] ?>" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+   <div class="modal fade" id="NoteEditModal<?= $note['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
         aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
@@ -17,7 +17,7 @@ function Modal_EditItemNote($note)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="ID" value="<?= $note['ID'] ?>">
+               <input type="hidden" name="id" value="<?= $note['id'] ?>">
 
                <div class="modal-body text-center">
                   <div class="form-row justify-content-center">

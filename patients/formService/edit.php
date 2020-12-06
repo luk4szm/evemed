@@ -6,7 +6,7 @@ function PatientEdit()
 	$form = $_POST;
 
 	//get old entry version
-	$sql = " SELECT * FROM patients WHERE ID = '{$form['ID']}' ";
+	$sql = " SELECT * FROM patients WHERE id = '{$form['id']}' ";
 	$old_entry = mysqli_fetch_assoc(MysqliQuery($sql));
 
 	foreach ($form AS $name => $input) {
@@ -39,7 +39,7 @@ function PatientEdit()
 			 " . $set['allergy'] . ",
 			 " . $set['chronic_disease'] . ",
 			 " . $set['drugs'] . "
-		WHERE ID = '{$form['ID']}'	
+		WHERE id = '{$form['id']}'	
 		";
 	$ins = MysqliQuery($sql);
 
@@ -52,7 +52,7 @@ function PatientEdit()
 	}
 
 	//get new entry version
-	$sql = " SELECT * FROM patients WHERE ID = {$form['ID']}";
+	$sql = " SELECT * FROM patients WHERE id = {$form['id']}";
 	$new_entry = mysqli_fetch_assoc(MysqliQuery($sql));
 
 	//diffrence in entrys
@@ -62,11 +62,11 @@ function PatientEdit()
 		//save change in history
 		$sql = "
 			INSERT INTO patients_changehistory
-			SET patID = '{$form['ID']}',
+			SET pat_id = '{$form['id']}',
 				 field = '$key',
 				 data_before = '{$old_entry[$key]}',
 				 data_after = '{$new_entry[$key]}',
-				 user = '{$_SESSION['loggedUser']['ID']}'
+				 user = '{$_SESSION['loggedUser']['id']}'
 		";
 		$ins = MysqliQuery($sql);
 		if ($ins) $i++;
@@ -83,7 +83,7 @@ function PatientEdit()
 	}
 
 
-	header('Location: /patient.php?id=' . $form['ID']);
+	header('Location: /patient.php?id=' . $form['id']);
 	exit();
 
 }

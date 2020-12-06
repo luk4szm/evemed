@@ -19,7 +19,7 @@ function VisitEditDrug()
 		    quantity = '{$form['quantity']}',
 		    dosage = '{$form['dosage']}',
 		    refund = '{$form['refund']}'
-		WHERE ID = '{$form['ID']}'
+		WHERE id = '{$form['id']}'
 	";
 	$edit = MysqliQuery($sql);
 

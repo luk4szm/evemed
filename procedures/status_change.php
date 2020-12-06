@@ -34,7 +34,7 @@ global $proc; #just for turn off notification
 
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/modals/procedure-turnOff.php';
+require_once __MDIR__ . '/procedures/modals/procedure-turnOff.php';
 Modal_ProcedureTurnOff($proc);
-require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/modals/procedure-turnOn.php';
+require_once __MDIR__ . '/procedures/modals/procedure-turnOn.php';
 Modal_ProcedureTurnOn($proc);

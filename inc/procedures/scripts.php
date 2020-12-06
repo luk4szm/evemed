@@ -1,7 +1,7 @@
 <?php
 
 //list of procedures
-require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/script/list.php';
+require_once __MDIR__ . '/procedures/script/list.php';
 
 //procedures detail
-require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/script/recon.php';
+require_once __MDIR__ . '/procedures/script/recon.php';

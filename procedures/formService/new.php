@@ -41,7 +41,7 @@ function ProcedureNewAdd()
 
 		//check for duplicates
 		$sql = "
-			SELECT ID, name_short, name_full 
+			SELECT id, name_short, name_full 
          FROM procedures
 			WHERE name_short LIKE '{$form['name_short']}'
  		      OR name_full LIKE '{$form['name_full']}'
@@ -80,7 +80,7 @@ function ProcedureNewAdd()
 			    name_full = '{$form['name_full']}',
 			    price = '{$form['price']}',
 			    " . $set['description'] . ",
-				add_user = '{$_SESSION['loggedUser']['ID']}'
+				add_user = '{$_SESSION['loggedUser']['id']}'
 		";
 		$ins = MysqliQuery($sql);
 
@@ -92,18 +92,18 @@ function ProcedureNewAdd()
 			);
 		}
 
-		//get ID of new procedure
+		//get id of new procedure
 		$sql = "
-			SELECT ID FROM procedures
-			WHERE add_user = '{$_SESSION['loggedUser']['ID']}'
-			ORDER BY ID DESC LIMIT 1
+			SELECT id FROM procedures
+			WHERE add_user = '{$_SESSION['loggedUser']['id']}'
+			ORDER BY id DESC LIMIT 1
 		";
 		$proc = mysqli_fetch_assoc(MysqliQuery($sql));
 
 		unset($_SESSION['procNew']);
 		unset($_SESSION['procNewWarnings']);
 		unset($_SESSION['procNewErrors']);
-		header('Location: /procedure.php?id=' . $proc['ID']);
+		header('Location: /procedure.php?id=' . $proc['id']);
 		exit();
 
 	}

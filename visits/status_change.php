@@ -1,12 +1,12 @@
 <?php
 global $vis; #just for turn off notification
-if ($vis['statusID'] == 1) { ?>
+if ($vis['status_id'] == 1) { ?>
 
    <div class="card">
       <div class="card-body">
          <div class="d-flex justify-content-center" style="padding: 0 20px">
 
-				<?php if ($vis['visit_date'] < $now) { ?>
+				<?php if ($vis['visit_date'] < NOW) { ?>
                <div class="text-center w-100" style="margin: 0 5px;">
                   <button type="button" class="btn btn-outline-success" data-toggle="modal"
                           data-target="#VisitConfirmModal" style="border-radius: 25px;">
@@ -33,11 +33,12 @@ if ($vis['statusID'] == 1) { ?>
       </div>
    </div>
 
-<?php }
+<?php
+}
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/modals/visit-confirm.php';
+require_once __MDIR__ . '/visits/modals/visit-confirm.php';
 Modal_VisitConfirm($vis);
-require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/modals/visit-change-date.php';
+require_once __MDIR__ . '/visits/modals/visit-change-date.php';
 Modal_VisitChangeDate($vis);
-require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/modals/visit-cancel.php';
+require_once __MDIR__ . '/visits/modals/visit-cancel.php';
 Modal_VisitCancel($vis);

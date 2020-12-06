@@ -23,7 +23,7 @@ global $proc; #just for turn off notification
          </div>
 
          <div class="border-left h-100 media-body align-self-center">
-            <div class="w-100 d-inline-block" style="margin: 0; padding: 0 20px">
+            <div class="w-100 d-inline-block m-0" style="padding: 0 20px">
 
                <table class="table table-condensed">
 

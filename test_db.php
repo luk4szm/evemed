@@ -1,33 +1,31 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/visits/scripts.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/employees/script/list.php';
 
-$id = 0;
+$conn = PDO();
+function EmpRecon($id)
+{
 
-$query = $db->prepare('SELECT * FROM employees WHERE ID >= :ID');
-echo '<pre>';
-var_dump($query);
-echo '</pre>';
+	global $conn;
 
-$query->bindValue(':ID', $id, PDO::PARAM_INT);
-$query->execute();
+	$query = $conn->prepare("
+		SELECT *
+		FROM employees
+		WHERE id = :id
+	");
+	$query->bindValue('id', $id, PDO::PARAM_INT);
+	$query->execute();
+	unset($pdo);
 
-$users = $query->fetchAll(PDO::FETCH_ASSOC);
-echo '<pre>';
-var_dump($users);
-echo '</pre>';
+	return $query->fetchAll();
 
-foreach ($users AS $user) {
-	var_dump($user);
 }
 
+$user = EmpRecon(1);
 
-$query = $db->query('SELECT * FROM employees WHERE ID >= 0');
 echo '<pre>';
-var_dump($query);
+var_dump($user);
 echo '</pre>';
-$users = $query->fetchAll(PDO::FETCH_ASSOC);
-foreach ($users AS $user) {
-	var_dump($user);
-}
+
+

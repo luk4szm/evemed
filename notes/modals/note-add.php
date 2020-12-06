@@ -1,5 +1,5 @@
 <?php
-function Modal_AddNoteToItem($item_type, $ID)
+function Modal_AddNoteToItem($item_type, $id)
 {
 	?>
 
@@ -17,7 +17,7 @@ function Modal_AddNoteToItem($item_type, $ID)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="<?= $item_type ?>" value="<?= $ID ?>">
+               <input type="hidden" name="<?= $item_type ?>" value="<?= $id ?>">
 
                <div class="modal-body text-center">
                   <div class="form-row justify-content-center">

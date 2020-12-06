@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/procedures/scripts.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/inc/procedures/scripts.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
@@ -11,21 +11,21 @@ if (!isset($_SESSION['loggedUser'])) {
 
 if (!empty($get_key)) {
    //service - edit patient info
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/formService/edit.php';
+	require_once __DIR__ . '/procedures/formService/edit.php';
 	if ($get_key[0] == 'edit' && isset($_POST['formStep']) && $_POST['formStep'] == 'editProcedureData') ProcedureEdit();
 
 	//service - edit patient info
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/formService/turn-off-on.php';
+	require_once __DIR__ . '/procedures/formService/turn-off-on.php';
 	if ($get_key[0] == 'id' && isset($_POST['modalForm']) && $_POST['modalForm'] == 'ProcedureTurnOff') ProcedureTurnOff();
 	if ($get_key[0] == 'id' && isset($_POST['modalForm']) && $_POST['modalForm'] == 'ProcedureTurnOn') ProcedureTurnOn();
 
 	//service - note whole list
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/notes/service-list.php';
+	require_once __DIR__ . '/inc/notes/service-list.php';
 }
 
 if (!empty($get_key)) {
-	$searchID = $_GET[$get_key[0]];
-	$recon = ProcedureRecon($searchID);
+	$searchid = $_GET[$get_key[0]];
+	$recon = ProcedureRecon($searchid);
 	if ($recon['code'] === 200) {
 		$proc = $recon['result'];
 		$title = $proc['name_short'] . ' - ';
@@ -40,15 +40,21 @@ if (!empty($get_key)) {
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title><?= $title . SiteName() ?></title>
+	<?php include __DIR__ . '/inc/head.php'; ?>
+   <title><?= $title . SITE_NAME ?></title>
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/menu.php'; ?>
+
+<?php
+include __DIR__ . '/inc/menu.php';
+include __DIR__ . '/inc/glob-vars.php';
+
+if (isset($proc)) {
+	ItemInfoHead($proc);
+}
+?>
 
 <div class="container">
-
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/glob-vars.php'; ?>
 
 	<?php if (isset($proc)) { ?>
 
@@ -65,12 +71,12 @@ if (!empty($get_key)) {
                      <table width="100%">
                         <tr>
                            <td colspan="2">
-                              <a href="/procedure.php?id=<?= $proc['ID'] ?>" class="menu">Karta zabiegu</a>
+                              <a href="/procedure.php?id=<?= $proc['id'] ?>" class="menu">Karta zabiegu</a>
                            </td>
                         </tr>
                         <tr>
                            <td>
-                              <a href="/procedure.php?notes=<?= $proc['ID'] ?>" class="menu">Notatki</a>
+                              <a href="/procedure.php?notes=<?= $proc['id'] ?>" class="menu">Notatki</a>
                            </td>
                            <td class="text-right">
                               <span class="badge badge-light badge-menu"><?= $proc['notes_count'] ?></span>
@@ -78,7 +84,7 @@ if (!empty($get_key)) {
                         </tr>
                         <tr>
                            <td>
-                              <a href="/procedure.php?change_history=<?= $proc['ID'] ?>" class="menu">Historia zmian</a>
+                              <a href="/procedure.php?change_history=<?= $proc['id'] ?>" class="menu">Historia zmian</a>
                            </td>
                            <td class="text-right">
                               <span class="badge badge-light badge-menu"><?= $proc['change_history_count'] ?></span>
@@ -89,19 +95,12 @@ if (!empty($get_key)) {
                      <hr>
 
 							<?php if ($proc['status'] == 1) { ?>
-                        <a href="/procedure.php?edit=<?= $proc['ID'] ?>" class="menu">Edycja danych</a><br>
+                        <a href="/procedure.php?edit=<?= $proc['id'] ?>" class="menu">Edycja danych</a><br>
 							<?php } ?>
                      <a href="<?= $_SESSION['prev_url']; ?>" class="menu">Wróc do poprz. karty</a>
 
                   </div>
                </div>
-
-					<?php
-					echo '<pre>';
-					print_r($proc);
-					echo '</pre>';
-					?>
-
             </div>
 
          </div>
@@ -111,23 +110,23 @@ if (!empty($get_key)) {
 				if (!empty($get_key)) {
 					switch ($get_key[0]) {
 						case 'id':
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/detail.php';
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-future-occurr.php';
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/visit-past-occurr.php';
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/status_change.php';
+							include __DIR__ . '/procedures/detail.php';
+							include __DIR__ . '/procedures/visit-future-occurr.php';
+							include __DIR__ . '/procedures/visit-past-occurr.php';
+							include __DIR__ . '/procedures/status_change.php';
 							break;
 						case 'edit':
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/edit.php';
+							include __DIR__ . '/procedures/edit.php';
 							break;
 						case 'notes':
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/notes.php';
+							include __DIR__ . '/procedures/notes.php';
 							break;
 						case 'change_history':
-							include $_SERVER['DOCUMENT_ROOT'] . '/procedures/change-history.php';
+							include __DIR__ . '/procedures/change-history.php';
 							break;
 					}
 				} else {
-					include $_SERVER['DOCUMENT_ROOT'] . '/procedures/detail.php';
+					include __DIR__ . '/procedures/detail.php';
 				}
 				?>
 
@@ -143,10 +142,12 @@ if (!empty($get_key)) {
 </div>
 
 <?php
+if (isset($proc)) {
+	ItemInfoFoot();
+}
 
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
-
+include __DIR__ . '/inc/foot.php';
+include __DIR__ . '/inc/notify.php';
 ?>
 
 </body>

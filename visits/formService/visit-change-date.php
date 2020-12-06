@@ -15,7 +15,7 @@ function VisitChangeDate()
 	$sql = "
 		UPDATE visits
 		SET visit_date = '{$form['visit_date']}'
-		WHERE ID = '{$form['visID']}'	 
+		WHERE id = '{$form['vis_id']}'	 
 		";
 	$ins = MysqliQuery($sql);
 

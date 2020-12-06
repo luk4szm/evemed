@@ -2,7 +2,6 @@
 
 function ResponseList($result)
 {
-
 	if (mysqli_num_rows($result)) {
 		$response['code'] = 200;
 		$response['list_count'] = mysqli_num_rows($result);
@@ -19,5 +18,4 @@ function ResponseList($result)
 	$response['result'] = (!empty($list)) ? $list : null;
 
 	return $response;
-
 }

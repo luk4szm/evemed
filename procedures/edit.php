@@ -16,7 +16,7 @@ global $proc; #just for turn off notification
 
       <form class="was-validated" method="post">
 
-         <input type="hidden" name="ID" value="<?= $proc['ID'] ?>">
+         <input type="hidden" name="id" value="<?= $proc['id'] ?>">
 
          <div class="form-group row">
             <label for="name_short" class="col-sm-3 col-form-label">Nazwa skrócona:</label>

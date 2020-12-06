@@ -2,13 +2,13 @@
 
 function Modal_EditVisitProcedure($proc)
 {
-
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/script/list.php';
+	require_once __MDIR__ . '/procedures/script/list.php';
 	$procedures = ProcedureList();
 
+	$key = array_search($proc['proc_id'], array_column($procedures['result'], 'id'));
 	?>
 
-   <div class="modal fade" id="ProcedureEditModal<?= $proc['ID'] ?>" tabindex="-1" role="dialog"
+   <div class="modal fade" id="ProcedureEditModal<?= $proc['id'] ?>" tabindex="-1" role="dialog"
         aria-labelledby="ModalCenterTitle"
         aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -23,7 +23,7 @@ function Modal_EditVisitProcedure($proc)
 
             <form class="was-validated" method="post">
 
-               <input type="hidden" name="procID" value="<?= $proc['ID'] ?>">
+               <input type="hidden" name="proc_id" value="<?= $proc['id'] ?>">
 
                <div class="modal-body text-center">
 
@@ -47,7 +47,7 @@ function Modal_EditVisitProcedure($proc)
                         </div>
                         <div>
                            Nominalna cena zabiegu:<br>
-                           <span class="f500"><?= FormatPrice($procedures['result'][$proc['procID']]['price']) ?></span>
+                           <span class="f500"><?= FormatPrice($procedures['result'][$key]['price']) ?></span>
                         </div>
                      </div>
                   </div>
@@ -71,5 +71,4 @@ function Modal_EditVisitProcedure($proc)
    </div>
 
 	<?php
-
 }

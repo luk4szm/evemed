@@ -2,7 +2,6 @@
 
 function ProcedureList($where = null, $order = null)
 {
-
 	if ($where) {
 		$where = 'WHERE ' . $where;
 	} else {
@@ -16,12 +15,10 @@ function ProcedureList($where = null, $order = null)
 	}
 
 	$sql = "
-		SELECT p.ID, p.name_short, p.name_full, p.description, p.price
+		SELECT p.id, p.name_short, p.name_full, p.description, p.price
 		FROM procedures AS p  
 		" . $where . "
-		" . $order
-	;
+		" . $order;
 
 	return ResponseList(MysqliQuery($sql));
-
 }

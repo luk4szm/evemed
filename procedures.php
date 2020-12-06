@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/whole-service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/procedures/scripts.php';
+require_once __DIR__ . '/inc/whole-service.php';
+require_once __DIR__ . '/inc/procedures/scripts.php';
 
 if (!isset($_SESSION['loggedUser'])) {
 	$_SESSION['prevURL'] = $_SERVER['REQUEST_URI'];
@@ -11,22 +11,24 @@ if (!isset($_SESSION['loggedUser'])) {
 
 if (!empty($get_key)) {
    //service - adding new procedure
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/formService/new.php';
+	require_once __DIR__ . '/procedures/formService/new.php';
 	if ($get_key[0] == 'new' && isset($_POST['formStep'])) ProcedureNewAdd();
 }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/head.php'; ?>
-   <title>Zabiegi - <?= SiteName() ?></title>
+	<?php include __DIR__ . '/inc/head.php'; ?>
+   <title>Zabiegi - <?= SITE_NAME ?></title>
 </head>
 <body>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/menu.php'; ?>
+
+<?php
+include __DIR__ . '/inc/menu.php';
+include __DIR__ . '/inc/glob-vars.php';
+?>
 
 <div class="container">
-
-	<?php include $_SERVER['DOCUMENT_ROOT'] . '/inc/glob-vars.php'; ?>
 
    <div class="row justify-content-center">
       <div class="col-md-3">
@@ -51,15 +53,10 @@ if (!empty($get_key)) {
                      </tr>
                   </table>
 
-                  <hr>
-
-                  <table width="100%">
-                     <tr>
-                        <td colspan="2">
-                           <a href="/procedures.php?new" class="menu">Dodaj nowy zabieg</a>
-                        </td>
-                     </tr>
-                  </table>
+                  <div class="row justify-content-center" style="margin-top: 15px">
+                     <a class="btn btn-outline-info navbar-btn" href="/procedures.php?new" role="button"
+                        style="border-radius: 25px;">Dodaj nowy zabieg</a>
+                  </div>
 
                </div>
             </div>
@@ -72,17 +69,17 @@ if (!empty($get_key)) {
 			if (!empty($get_key)) {
 				switch ($get_key[0]) {
 					case 'list':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/list.php';
+						include __DIR__ . '/procedures/list.php';
 						break;
 					case 'withdrawn':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/withdrawn.php';
+						include __DIR__ . '/procedures/withdrawn.php';
 						break;
 					case 'new':
-						include $_SERVER['DOCUMENT_ROOT'] . '/procedures/new.php';
+						include __DIR__ . '/procedures/new.php';
 						break;
 				}
 			} else {
-				include $_SERVER['DOCUMENT_ROOT'] . '/procedures/list.php';
+				include __DIR__ . '/procedures/list.php';
 			}
 			?>
 
@@ -92,8 +89,8 @@ if (!empty($get_key)) {
 
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/foot.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/inc/notify.php';
+include __DIR__ . '/inc/foot.php';
+include __DIR__ . '/inc/notify.php';
 
 ?>
 

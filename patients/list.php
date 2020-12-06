@@ -35,12 +35,12 @@ $k = 0;
 						$pat = $patients['result'][$i];
 						?>
                   <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/patient.php?id=<?= $pat['ID'] ?>'">
+                      onclick="window.location='/patient.php?id=<?= $pat['id'] ?>'">
                      <td>
 								<?= ++$k ?>
                      </td>
                      <td class="f500">
-								<?= $pat['full_name'] ?>
+								<?= $pat['full_name_reverse'] ?>
                      </td>
                      <td>
 								<?= DateConvert($pat['date_of_birth']) ?>

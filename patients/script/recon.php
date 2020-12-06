@@ -1,6 +1,6 @@
 <?php
 
-function PatientRecon($ID)
+function PatientRecon($id)
 {
 
 	$table_structure = TableStructure('patients');
@@ -8,28 +8,28 @@ function PatientRecon($ID)
 
 	//basic data
 	$sql = "
-		SELECT c.ID, c.first_name, c.last_name,
+		SELECT c.id, c.first_name, c.last_name,
 		       CONCAT(c.first_name, ' ', c.last_name) AS full_name,
 		       c.PESEL, c.gender, c.date_of_birth,
 		       c.street, c.postal_code, c.city, 
 				 c.allergy, c.chronic_disease, c.drugs,
 		       c.entry_add
 		FROM patients AS c
-		WHERE c.ID = '$ID'
+		WHERE c.id = '$id'
 	";
 	$pat = ResponseDetail(MysqliQuery($sql));
 
 
 	//visits
 	$sql = "
-		SELECT v.ID, v.statusID, v.visit_date, v.recommend, v.add_user, v.entry_add, v.complete,
+		SELECT v.id, v.status_id, v.visit_date, v.recommend, v.add_user, v.entry_add, v.complete,
 		       GROUP_CONCAT(p.name_short) AS procedures,
 				 SUM(vp.price) AS price
 		FROM visits AS v
-		LEFT JOIN visits_procedures AS vp ON vp.visID = v.ID
-		LEFT JOIN procedures AS p ON p.ID = vp.procID 
-	   WHERE v.patID = '$ID'
-		GROUP BY v.ID
+		LEFT JOIN visits_procedures AS vp ON vp.vis_id = v.id
+		LEFT JOIN procedures AS p ON p.id = vp.proc_id 
+	   WHERE v.pat_id = '$id'
+		GROUP BY v.id
 		ORDER BY v.visit_date ASC 
 	";
 	$res = MysqliQuery($sql);
@@ -49,7 +49,7 @@ function PatientRecon($ID)
 	//visits - future & past & canc
 	if ($pat['result']['visits_count']) {
 		foreach ($pat['result']['visits'] AS $visit) {
-			switch ($visit['statusID']) {
+			switch ($visit['status_id']) {
 				case 1:
 					$pat['result']['visits_future'][] = $visit;
 					break;
@@ -82,7 +82,7 @@ function PatientRecon($ID)
 
 
 	//notes
-	$tmp = NotesList("patID = '$ID'");
+	$tmp = NotesList("pat_id = '$id'");
 	if ($pat['result']['notes_count'] = $tmp['list_count']) {
 		foreach ($tmp['result'] AS $note) {
 			$note['add_user'] = $users[$note['add_user']];
@@ -93,9 +93,9 @@ function PatientRecon($ID)
 
 	//change history
 	$sql = "
-		SELECT ID, field, data_before, data_after, user, entry_add
+		SELECT id, field, data_before, data_after, user, entry_add
 		FROM patients_changehistory
-		WHERE patID = '$ID'
+		WHERE pat_id = '$id'
 		ORDER BY entry_add ASC
    ";
 	$res = MysqliQuery($sql);

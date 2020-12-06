@@ -19,7 +19,7 @@ function Modal_VisitNew($pat)
 
             <form class="was-validated" method="post" action="/visits.php?new">
 
-               <input type="hidden" name="patID" value="<?= $pat['ID'] ?>">
+               <input type="hidden" name="pat_id" value="<?= $pat['id'] ?>">
 
                <div class="modal-body text-center">
 

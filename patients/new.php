@@ -121,7 +121,7 @@ if (isset($_SESSION['patNewWarnings'])) {
                <div class="form-group col-md-4">
                   <label for="date_of_birth">Data urodzenia:</label>
                   <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                         value="<?= FormValue($form['date_of_birth']) ?>" max="<?= $today ?>">
+                         value="<?= FormValue($form['date_of_birth']) ?>" max="<?= TODAY ?>">
                </div>
                <div class="form-group col-md-5">
                   <label for="PESEL">PESEL:</label>

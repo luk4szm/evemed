@@ -16,7 +16,7 @@ global $pat; #just for turn off notification
 
       <form class="was-validated" method="post">
 
-         <input type="hidden" name="ID" value="<?= $pat['ID'] ?>">
+         <input type="hidden" name="id" value="<?= $pat['id'] ?>">
 
          <div class="form-row">
             <div class="form-group col-md-5">
@@ -35,7 +35,7 @@ global $pat; #just for turn off notification
             <div class="form-group col-md-4">
                <label for="date_of_birth">Data urodzenia:</label>
                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                      value="<?= FormValue($pat['date_of_birth']) ?>" max="<?= $today ?>">
+                      value="<?= FormValue($pat['date_of_birth']) ?>" max="<?= TODAY ?>">
             </div>
             <div class="form-group col-md-5">
                <label for="PESEL">PESEL:</label>

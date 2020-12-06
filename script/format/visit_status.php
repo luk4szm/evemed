@@ -1,17 +1,16 @@
 <?php
 
-function FormatVisitStatus($ID)
+function FormatVisitStatus($id)
 {
-
 	$sql = "
-		SELECT ID, name
+		SELECT id, name
 	   FROM visits_status
-		WHERE ID = '$ID'
+		WHERE id = '$id'
 	";
 
 	$status = mysqli_fetch_assoc(MysqliQuery($sql));
 
-	switch ($status['ID']) {
+	switch ($status['id']) {
 		case 1:
 			$color = 'blue';
 			break;
@@ -26,5 +25,4 @@ function FormatVisitStatus($ID)
 	}
 
 	return '<span class="f500 ' . $color . '">' . $status['name'] . '</span>';
-
 }

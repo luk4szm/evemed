@@ -9,7 +9,7 @@ function ProcedureTurnOff()
 	$sql = "
 		UPDATE procedures
 		SET status = 0
-		WHERE ID = '{$form['procID']}'	
+		WHERE id = '{$form['proc_id']}'	
 		";
 	$ins = MysqliQuery($sql);
 
@@ -24,11 +24,11 @@ function ProcedureTurnOff()
 	//save change in history
 	$sql = "
 		INSERT INTO procedures_changehistory
-		SET procID = '{$form['procID']}',
+		SET proc_id = '{$form['proc_id']}',
 			 field = 'status',
 			 data_before = 'aktywny',
 			 data_after = 'wycofany',
-			 user = '{$_SESSION['loggedUser']['ID']}'
+			 user = '{$_SESSION['loggedUser']['id']}'
 	";
 	MysqliQuery($sql);
 
@@ -47,7 +47,7 @@ function ProcedureTurnOn()
 	$sql = "
 		UPDATE procedures
 		SET status = 1
-		WHERE ID = '{$form['procID']}'	
+		WHERE id = '{$form['proc_id']}'	
 		";
 	$ins = MysqliQuery($sql);
 
@@ -62,11 +62,11 @@ function ProcedureTurnOn()
 	//save change in history
 	$sql = "
 		INSERT INTO procedures_changehistory
-		SET procID = '{$form['procID']}',
+		SET proc_id = '{$form['proc_id']}',
 			 field = 'status',
 			 data_before = 'wycofany',
 			 data_after = 'aktywny',
-			 user = '{$_SESSION['loggedUser']['ID']}'
+			 user = '{$_SESSION['loggedUser']['id']}'
 	";
 	MysqliQuery($sql);
 

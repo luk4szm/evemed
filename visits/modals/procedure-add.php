@@ -2,10 +2,18 @@
 
 function Modal_AddProcedureToVisit($vis)
 {
+	require_once __MDIR__ . '/procedures/script/list.php';
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/procedures/script/list.php';
-	$procedures = ProcedureList('status = 1');
+	if ($vis['procedures_count'] > 0) {
+		foreach ($vis['procedures'] AS $pr) {
+			$proc_exist[] = $pr['proc_id'];
+		}
+		$where_add = 'AND p.id NOT IN (' . implode(", ", $proc_exist) . ')';
+	} else {
+		$where_add = null;
+	}
 
+	$procedures = ProcedureList('p.status = 1 ' . $where_add);
 	?>
 
    <div class="modal fade" id="ProcedureAddModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
@@ -21,26 +29,22 @@ function Modal_AddProcedureToVisit($vis)
             </div>
 
             <form class="was-validated" method="post">
-
-               <input type="hidden" name="visID" value="<?= $vis['ID'] ?>">
+               <input type="hidden" name="vis_id" value="<?= $vis['id'] ?>">
 
                <div class="modal-body text-center">
 
                   <div class="form-row justify-content-center">
                      <div class="form-group col-md-11">
-                        <label for="procID">Zabieg:</label>
-                        <select class="form-control selectpicker" id="procID" name="procID"
+                        <label for="proc_id">Zabieg:</label>
+                        <select class="form-control selectpicker" id="proc_id" name="proc_id"
                                 data-live-search="true" title="Wybierz zabieg" required>
 									<?php
-
 									foreach ($procedures['result'] AS $proc) {
-										echo '<option value="' . $proc['ID'] . '">';
+										echo '<option value="' . $proc['id'] . '">';
 										echo $proc['name_short'] . ' [' . FormatPrice($proc['price']) . ']';
 										echo '</option>';
 									}
-
 									?>
-
                         </select>
                      </div>
                   </div>
@@ -73,5 +77,4 @@ function Modal_AddProcedureToVisit($vis)
    </div>
 
 	<?php
-
 }

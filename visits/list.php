@@ -35,7 +35,7 @@ $k = 0;
 						$vis = $visits['result'][$i];
 						?>
                   <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/visit.php?id=<?= $vis['ID'] ?>'">
+                      onclick="window.location='/visit.php?id=<?= $vis['id'] ?>'">
                      <td>
 								<?= ++$k ?>
                      </td>
@@ -43,7 +43,7 @@ $k = 0;
 								<?= $vis['pat_full_name'] ?>
                      </td>
                      <td>
-								<?= FormatVisitStatus($vis['statusID']) ?>
+								<?= FormatVisitStatus($vis['status_id']) ?>
                      </td>
                      <td class="f500">
 								<?= FormatPrice($vis['price']) ?>

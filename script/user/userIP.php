@@ -4,7 +4,6 @@
 
 function UserIP()
 {
-
    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
       return $_SERVER['HTTP_CLIENT_IP'];
    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -12,5 +11,4 @@ function UserIP()
    } else {
       return $_SERVER['REMOTE_ADDR'];
    }
-
 }

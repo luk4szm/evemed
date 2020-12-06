@@ -8,7 +8,7 @@ function VisitDeleteProcedure()
 	//edit entry in database
 	$sql = "
 		DELETE FROM visits_procedures
-		WHERE ID = '{$form['procID']}'
+		WHERE id = '{$form['proc_id']}'
 	";
 	$del = MysqliQuery($sql);
 

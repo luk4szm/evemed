@@ -22,14 +22,14 @@ global $vis; #just for turn off notification
          </div>
 
          <div class="border-left h-100 media-body align-self-center">
-            <div class="w-100 d-inline-block" style="margin: 0; padding: 0 20px">
+            <div class="w-100 d-inline-block m-0" style="padding: 0 20px">
 
                <table class="table table-condensed">
 
                   <tr class="table-sm">
                      <td width="200px">Pacjent:</td>
                      <td style="font-size: 16px">
-                        <a href="/patient.php?id=<?= $vis['patient']['ID'] ?>" class="black">
+                        <a href="/patient.php?id=<?= $vis['patient']['id'] ?>" class="black">
                            <span class="f500"><?= $vis['patient']['full_name'] ?></span>
 									<?= ' (' . $vis['patient']['age'] . ' lat)' ?>
                         </a>
@@ -42,7 +42,7 @@ global $vis; #just for turn off notification
                   <tr class="table-sm">
                      <td>Status:</td>
                      <td colspan="2">
-								<?= FormatVisitStatus($vis['statusID']) ?>
+								<?= FormatVisitStatus($vis['status_id']) ?>
                      </td>
                   </tr>
 
@@ -64,7 +64,7 @@ global $vis; #just for turn off notification
                      </tr>
 						<?php } ?>
 
-						<?php if ($vis['statusID'] == 3) { ?>
+						<?php if ($vis['status_id'] == 3) { ?>
                      <tr class="table-sm">
                         <td>Badanie:</td>
                         <td colspan="2">

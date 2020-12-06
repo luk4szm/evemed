@@ -18,7 +18,7 @@ $k = 0;
 			<?php
 			if ($vis['procedures_count'] > 0) {
 				?>
-            <table class="table table-condensed <?= $vis['statusID'] == 1 ? 'table-hover' : '' ?>">
+            <table class="table table-condensed <?= $vis['status_id'] == 1 ? 'table-hover' : '' ?>">
 
                <tr>
                   <th>#</th>
@@ -33,8 +33,8 @@ $k = 0;
 						$proc = $vis['procedures'][$i];
 						$price_sum += $proc['price'];
 						$tr_class =
-							($vis['statusID'] == 1) ?
-								'style="cursor: pointer;" data-toggle="modal" data-target="#ProcedureEditModal' . $proc['ID'] . '"' :
+							($vis['status_id'] == 1) ?
+								'style="cursor: pointer;" data-toggle="modal" data-target="#ProcedureEditModal' . $proc['id'] . '"' :
 								null;
 
 						?>
@@ -43,7 +43,7 @@ $k = 0;
 								<?= ++$k ?>
                      </td>
                      <td class="f500">
-                        <a class="black" href="/procedure.php?id=<?= $proc['procID'] ?>">
+                        <a class="black" href="/procedure.php?id=<?= $proc['proc_id'] ?>">
                            <?= $proc['name_short'] ?>
                         </a>
                      </td>
@@ -72,7 +72,7 @@ $k = 0;
 				ShowSimpleInfo('Lista zabiegów jest pusta');
 			}
 			?>
-			<?php if ($vis['statusID'] == 1) { ?>
+			<?php if ($vis['status_id'] == 1) { ?>
             <div class="row justify-content-center" style="margin-top: 15px">
                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#ProcedureAddModal"
                        style="border-radius: 25px;">
@@ -84,15 +84,13 @@ $k = 0;
    </div>
 
 <?php
-if ($vis['statusID'] == 1) {
-
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/modals/procedure-add.php';
+if ($vis['status_id'] == 1) {
+	require_once __MDIR__ . '/visits/modals/procedure-add.php';
 	Modal_AddProcedureToVisit($vis);
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/visits/modals/procedure-edit.php';
+	require_once __MDIR__ . '/visits/modals/procedure-edit.php';
 	for ($i = 0; $i < $vis['procedures_count']; $i++) {
 		$proc = $vis['procedures'][$i];
 		Modal_EditVisitProcedure($proc);
 	}
-
 }

@@ -43,8 +43,8 @@ $disable_next_step = false;
 			if (isset($form['visit_date'])) {
 
 				$search_date = substr($form['visit_date'], 0, 10);
-				$day_visits = VisitList("LEFT(v.visit_date, 10) = '$search_date' AND v.statusID = 1");
-				$hour_visits = VisitList("v.visit_date = '{$form['visit_date']}' AND v.statusID = 1");
+				$day_visits = VisitList("LEFT(v.visit_date, 10) = '$search_date' AND v.status_id = 1");
+				$hour_visits = VisitList("v.visit_date = '{$form['visit_date']}' AND v.status_id = 1");
 
 				if ($day_visits['code'] == 200) {
 					if ($hour_visits['code'] == 200) {
@@ -77,8 +77,8 @@ $disable_next_step = false;
 
 			if (isset($_SESSION['visNew']) && $step > 1) {
 
-				require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/script/recon.php';
-				$pat = PatientRecon($form['patID']);
+				require_once __MDIR__ . '/patients/script/recon.php';
+				$pat = PatientRecon($form['pat_id']);
 
 				?>
             <div class="row justify-content-center">
@@ -101,17 +101,17 @@ $disable_next_step = false;
 
             <div class="form-row justify-content-center">
                <div class="form-group col-md-6">
-                  <label for="patID">Pacjent:</label>
-                  <select class="selectpicker form-control" name="patID" id="patID"
-                          title="Wybierz obiekt" data-live-search="true" required>
+                  <label for="pat_id">Pacjent:</label>
+                  <select class="selectpicker form-control" name="pat_id" id="pat_id"
+                          title="wybierz pacjenta" data-live-search="true" required>
 							<?php
-							require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/script/list.php';
+							require_once __MDIR__ . '/patients/script/list.php';
 							$patients = PatientList();
 
 							if ($patients['list_count'] > 0) {
 								foreach ($patients['result'] AS $pat) {
-									$selected = ($pat['ID'] == $form['patID']) ? 'selected' : '';
-									echo '<option value="' . $pat['ID'] . '" ' . $selected . '>' . $pat['full_name'] . '</option>';
+									$selected = ($pat['id'] == $form['pat_id']) ? 'selected' : '';
+									echo '<option value="' . $pat['id'] . '" ' . $selected . '>' . $pat['full_name'] . '</option>';
 								}
 							}
 							?>

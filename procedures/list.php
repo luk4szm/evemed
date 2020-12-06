@@ -33,7 +33,7 @@ $procedures = ProcedureList('p.status = 1');
 						$proc = $procedures['result'][$i];
 						?>
                   <tr class="table-sm" style="cursor: pointer;"
-                      onclick="window.location='/procedure.php?id=<?= $proc['ID'] ?>'">
+                      onclick="window.location='/procedure.php?id=<?= $proc['id'] ?>'">
                      <td>
 								<?= ++$k ?>
                      </td>

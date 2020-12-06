@@ -8,7 +8,7 @@ function VisitDeleteDrug()
 	//edit entry in database
 	$sql = "
 		DELETE FROM visits_drugs
-		WHERE ID = '{$form['ID']}'
+		WHERE id = '{$form['id']}'
 	";
 	$del = MysqliQuery($sql);
 

@@ -32,7 +32,7 @@ global $pat; #just for turn off notification
 								$vis = $pat['visits_future'][$i];
 								?>
                         <tr class="table-sm" style="cursor: pointer;"
-                            onclick="window.location='/visit.php?id=<?= $vis['ID'] ?>'">
+                            onclick="window.location='/visit.php?id=<?= $vis['id'] ?>'">
                            <td class="min-width">
 										<?= ++$k ?>
                            </td>
@@ -58,7 +58,7 @@ global $pat; #just for turn off notification
 
 					<?php if ($pat['visits_past_count'] > 0) { ?>
                   <div class="row justify-content-center" style="margin-top: 15px">
-                     <a href="/patient.php?visits_past=<?= $pat['ID'] ?>" style="font-size: 14px">[zobacz minione
+                     <a href="/patient.php?visits_past=<?= $pat['id'] ?>" style="font-size: 14px">[zobacz minione
                         wizyty (<?= $pat['visits_past_count'] ?>)]</a>
                   </div>
 					<?php } ?>
@@ -132,8 +132,8 @@ global $pat; #just for turn off notification
    </div>
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/patients/modals/visit-new.php';
+require_once __MDIR__ . '/patients/modals/visit-new.php';
 Modal_VisitNew($pat);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/notes/modals/note-add.php';
-Modal_AddNoteToItem('patID', $pat['ID']);
+require_once __MDIR__ . '/notes/modals/note-add.php';
+Modal_AddNoteToItem('pat_id', $pat['id']);
